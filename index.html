@@ -315,9 +315,15 @@ a.lc:hover,button.lc:hover{box-shadow:0 4px 12px rgba(28,36,49,.16);filter:brigh
 .ciclo.fluxo .cards>:is(.lc,.sis-card){position:relative;width:auto;margin:0 16px;justify-self:stretch;align-self:stretch}
 .ciclo.fluxo .cards>:is(.lc,.sis-card):first-child{margin-top:14px}
 .liga{display:grid;place-items:center;height:28px;color:var(--sf)}
-.passo .sis-card{gap:8px;padding:12px 12px 14px;background:#fff}
-.passo .sis-img{height:112px}
-.passo .sis-marca b{font-size:21px;max-width:240px}
+.passo .sis-card,.base .sis-card,.cards .sis-card{gap:8px;padding:12px 12px 14px;background:#fff}
+.passo .sis-img,.base .sis-img,.cards .sis-img{height:112px}
+.passo .sis-marca b,.cards .sis-marca b{font-size:21px;max-width:240px}
+.sis-card.mini .sis-img{height:64px;margin-bottom:0}
+.sis-card.mini .sis-marca{left:14px}.sis-card.mini .sis-marca .ic{width:22px;height:22px}.sis-card.mini .sis-marca b{font-size:15px}
+.sis-card.mini .sis-fundo .ic{width:110px;height:110px}
+.sis-card.mini .sis-t{font-size:15px}
+.diag .no>.sis-card{height:100%}
+.minis .sis-card{height:100%}
 .passo .sis-t{font-size:18px}
 .passo .sis-d{font-size:14px}
 .sis-card .pill{font-size:10px}
@@ -963,6 +969,9 @@ function origem(it){
   return /(^|\.)ct\.ufpb\.br$/.test(h)?"ct":/(^|\.)ufpb\.br$/.test(h)?"ufpb":"fora";
 }
 function cartao(it,comSecao,mini){
+  return cartaoImg(it,mini,comSecao);
+}
+function cartaoAntigo(it,comSecao,mini){
   const s=SIT[it.sit], painel=it.tipo==="Painel";
   const tag=it.rota?"button":(it.url?"a":"div");
   const attrs=(it.rota?`type="button" data-ir="${it.rota}"`:(it.url?`href="${it.url}" target="_blank" rel="noopener"`:""));
@@ -978,15 +987,15 @@ function cartao(it,comSecao,mini){
   </${tag}>`;
 }
 
-function cartaoImg(it){
+function cartaoImg(it,mini,comSecao){
   const st=SIT[it.sit]||SIT.ar, ic=ico(it.ic||TIPO_IC[it.tipo]), cor=it.cor||SEC_DE[it.id].n, nome=it.rot||it.titulo;
   const tag=it.rota?"button":(it.url?"a":"div");
   const attrs=it.rota?`type="button" data-ir="${it.rota}"`:(it.url?`href="${it.url}" target="_blank" rel="noopener"`:"");
   const orig=origem(it), destino=it.rota?"no portal":(it.url?dominio(it.url):(st.sem||st.t));
-  return `<${tag} class="sis-card${it.rota||it.url?"":" sem"}" data-id="${it.id}" data-sit="${it.sit}" data-cor="${cor}" ${attrs} title="${esc(it.tipo+": "+it.titulo+". "+it.desc)}">
+  return `<${tag} class="sis-card${mini?" mini":""}${it.rota||it.url?"":" sem"}" data-id="${it.id}" data-sit="${it.sit}" data-cor="${cor}" ${attrs} title="${esc(it.tipo+": "+it.titulo+". "+it.desc)}">
     <span class="sis-img" aria-hidden="true"><span class="sis-marca">${ic}<b>${esc(nome)}</b></span><span class="sis-fundo">${ic}</span></span>
     <span class="sis-tags"><span class="sis-tag">${it.tipo}</span><span class="pill ${st.c}">${st.t}</span></span>
-    <span class="sis-t">${esc(it.titulo)}</span><span class="sis-d">${it.desc}</span>
+    <span class="sis-t">${esc(mini&&it.curto?it.curto:it.titulo)}</span>${mini?"":`<span class="sis-d">${comSecao?"<b>"+SEC_DE[it.id].titulo+"</b> · ":""}${it.desc}</span>`}
     <span class="sis-ir">${esc(destino)} ${orig?ico(SETA_ORIG[orig]):""}</span>
   </${tag}>`;
 }
@@ -996,7 +1005,7 @@ function blocos(itens){
   return bl.map(b=>b.minis?`<div class="minis">${b.minis.map(x=>cartao(x,false,true)).join("")}</div>`:cartao(b)).join("");
 }
 function ciclo(s){
-  const C=s.id==="acompanhamento"?cartaoImg:cartao;
+  const C=cartao;
   /* com fluxo: duas pastilhas por passo, ligadas por uma seta; "entra" liga a última pastilha do passo anterior à última deste */
   const pastilhas=g=>s.fluxo&&g.itens.length===2
     ?C(g.itens[0])+`<span class="liga" aria-hidden="true">${g.seta?ico(g.seta==="cima"?"cima":"baixo"):""}</span>`+C(g.itens[1])
