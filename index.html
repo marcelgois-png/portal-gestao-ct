@@ -145,6 +145,10 @@ a.porta{text-decoration:none}
 .sis-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
 .sis-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:16px 16px 18px;border:1px solid #D3DCE4;border-radius:18px;background:#F7F9FB;text-decoration:none;color:var(--texto);transition:box-shadow .15s,transform .15s}
 a.sis-card:hover{box-shadow:0 10px 24px rgba(28,36,49,.12);transform:translateY(-2px)}
+button.sis-card{font:inherit;text-align:left;cursor:pointer;width:100%}
+button.sis-card:hover{box-shadow:0 10px 24px rgba(28,36,49,.12);transform:translateY(-2px)}
+.porta-criar{border-style:dashed}
+#sec-inicio .hero{margin-bottom:22px}
 .sis-card:focus-visible{outline:2.5px solid var(--terracota);outline-offset:3px}
 .sis-img{position:relative;display:block;height:150px;border-radius:12px;overflow:hidden;margin-bottom:6px;
   background:linear-gradient(135deg,color-mix(in srgb,var(--sf) 80%,#fff) 0%,var(--sf) 55%,color-mix(in srgb,var(--sf) 70%,#000) 100%)}
@@ -525,6 +529,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
 
       <!-- Início -->
       <section class="secao" id="sec-inicio">
+        <div class="cab"><span class="n"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg></span><h2>Dimensões da Gestão</h2></div>
         <div class="hero">
           <div class="owl" data-owl="0"></div>
           <div class="fala">
@@ -532,10 +537,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
             <div class="bub">Esta plataforma é um hub que concentra o que a Direção do Centro planeja, executa e apresenta à comunidade do CT. Cada link leva a uma página, um painel ou um sistema que já existe; os itens com a etiqueta <span class="pill p-cz">A criar</span> ainda não têm conteúdo. Em <button type="button" class="lk-fala" data-ir="sobre">Sobre o portal</button>, você vê como ele está organizado e o que quer dizer cada etiqueta, ícone e cor.</div>
           </div>
         </div>
-        <div class="grupo">
-          <div class="grupo-t"><h3>Dimensões da Gestão</h3></div>
-          <div class="portas" id="portas"></div>
-        </div>
+        <div class="portas" id="portas"></div>
       </section>
 
       <!-- Seções 1 a 4 entram aqui, geradas a partir dos dados -->
@@ -543,7 +545,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
       <!-- Sobre -->
       <section class="secao" id="sec-sobre" hidden>
         <div class="cab"><span class="n">9</span><h2>Sobre o portal</h2></div>
-        <div class="owlbox topo-coruja ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Sobre o portal</span><p>Como o portal está organizado, o que cada etiqueta quer dizer e o que ainda falta definir.</p><p><b>Protótipo montado em 18/11/2026 e revisto em 19/11/2026.</b> Os links foram conferidos no site do CT em 18/11/2026. Os números do plano de gestão vêm da Carta Avançar CT e do PDI UFPB 2024–2028. Os de manutenção vêm do Painel de requisições do Cuida CT. Os de inspeção, de ocupação e de projetos foram contados nas páginas em 19/11/2026. A página da Carta reproduz a Carta Programa de setembro de 2024, e a contagem de projetos vem dos dados abertos do Planeja CT.</p></div></div>
+        <div class="owlbox topo-coruja ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Sobre o portal</span><p>Como o portal está organizado, o que cada etiqueta quer dizer e o que ainda falta definir. <b>Protótipo montado em 18/11/2026 e revisto em 19/11/2026.</b> Os links foram conferidos no site do CT em 18/11/2026. Os números do plano de gestão vêm da Carta Avançar CT e do PDI UFPB 2024–2028. Os de manutenção vêm do Painel de requisições do Cuida CT. Os de inspeção, de ocupação e de projetos foram contados nas páginas em 19/11/2026. A página da Carta reproduz a Carta Programa de setembro de 2024, e a contagem de projetos vem dos dados abertos do Planeja CT.</p></div></div>
         <div class="mapa">
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M5 5h2v2h-2zM11 5h2v2h-2zM17 5h2v2h-2zM5 11h2v2h-2zM11 11h2v2h-2zM17 11h2v2h-2zM5 17h2v2h-2zM11 17h2v2h-2zM17 17h2v2h-2z"/></svg><div><b>Sete seções, cada uma com a sua cor.</b> A cor aparece no menu, nos quadros de números e nos cartões. Cada seção tem endereço próprio, que pode ser enviado por link.<div class="leg"><div><span class="ponto" data-cor="1"></span>Acompanhamento da Gestão</div><div><span class="ponto" data-cor="7"></span>Serviços</div><div><span class="ponto" data-cor="2"></span>Infraestrutura</div><div><span class="ponto" data-cor="3"></span>Orçamento</div><div><span class="ponto" data-cor="4"></span>Gestão de Pessoas</div><div><span class="ponto" data-cor="5"></span>Transparência</div><div><span class="ponto" data-cor="6"></span>Sistemas do CT</div></div></div></div>
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4"/></svg><div><b>Busca no topo.</b> Fica na barra superior, sempre visível. Digite uma palavra para procurar no portal inteiro: nomes, explicações e seções. Também vale o tipo: "painel", "sistema", "documento" ou "página". A tecla Esc limpa a busca.</div></div>
@@ -1055,7 +1057,7 @@ function cartaoSis(it,g){
 document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map((s,ix)=>`
   <section class="secao" id="sec-${s.id}" data-cor="${s.n}" hidden>
     <div class="cab"><span class="n">${ix+1}</span><h2>${s.titulo}</h2></div>
-    <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.kicker}</p><p>${s.leitura.tx}</p></div></div>
+    <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.kicker} ${s.leitura.tx}</p></div></div>
     
     ${(s.id==="sistemas"||s.id==="transparencia")?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
   </section>`).join(""));
@@ -1063,8 +1065,8 @@ document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map
 document.querySelectorAll(".ciclo-wrap[data-setas]").forEach(w=>{const f=()=>desenharSetas(w); new ResizeObserver(f).observe(w); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)});
 
 /* ===== Início ===== */
-document.getElementById("portas").innerHTML=SECOES.map(s=>{const n=s.grupos.reduce((t,g)=>t+g.itens.length,0);
-  return `<button class="porta" type="button" data-ir="${s.id}" data-cor="${s.n}"><span class="porta-ic">${ico(s.ic)}</span><span class="porta-t">${s.titulo}</span><span class="porta-d">${s.resumo}</span><span class="qt">${n?`Abrir a seção · ${n} itens`:"A criar · seção em construção"} ${ico("seta")}</span></button>`}).join("");
+document.getElementById("portas").innerHTML=SECOES.map(s=>{const n=s.grupos.reduce((t,g)=>t+g.itens.length,0), ic=ico(s.ic);
+  return `<button class="sis-card porta-sis${n?"":" porta-criar"}" type="button" data-ir="${s.id}" data-cor="${s.n}" title="${esc(s.titulo)}: ${esc(s.resumo)}"><span class="sis-img" aria-hidden="true"><span class="sis-marca">${ic}<b>${esc(s.titulo)}</b></span><span class="sis-fundo">${ic}</span></span><span class="sis-tags"><span class="sis-tag">${n?n+" itens":"A criar"}</span></span><span class="sis-t">${esc(s.titulo)}</span><span class="sis-d">${s.resumo}</span><span class="sis-ir">${n?"Abrir a seção":"Seção em construção"} ${ico("seta")}</span></button>`}).join("");
 
 /* ===== Sobre ===== */
 /* todos os painéis do portal, com a situação e os três campos que a Direção vai informar */
@@ -1123,7 +1125,7 @@ function renderCarta(){
   document.getElementById("sec-carta").innerHTML=`
     <button class="voltar" type="button" data-ir="acompanhamento">${ico("volta")}Acompanhamento da Gestão</button>
     <div class="cab"><span class="n">${ico("doc")}</span><h2>Carta Avançar CT</h2></div>
-    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Do plano ao projeto</span><p>O plano de gestão 2025–2028 da Direção do CT: o que será feito e que metas foram assumidas, por eixo, linha e ação.</p><p><b>${acoes.length-sem} das ${acoes.length} ações já têm projeto no Planeja CT.</b> São ${nP} projetos classificados na Carta: ${porEixo.map(x=>x[1]+" em "+x[0]).join(", ")}. As outras ${sem} ações ainda não têm projeto cadastrado. Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
+    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Do plano ao projeto</span><p>O plano de gestão 2025–2028 da Direção do CT: o que será feito e que metas foram assumidas, por eixo, linha e ação. <b>${acoes.length-sem} das ${acoes.length} ações já têm projeto no Planeja CT.</b> São ${nP} projetos classificados na Carta: ${porEixo.map(x=>x[1]+" em "+x[0]).join(", ")}. As outras ${sem} ações ainda não têm projeto cadastrado. Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
     <div class="stats">
       <div class="stat"><b>${E.length}</b><span>eixos</span></div>
       <div class="stat"><b>${nL}</b><span>linhas de ação</span></div>
@@ -1147,7 +1149,7 @@ function renderPDI(){
   document.getElementById("sec-pdi").innerHTML=`
     <button class="voltar" type="button" data-ir="acompanhamento">${ico("volta")}Acompanhamento da Gestão</button>
     <div class="cab"><span class="n">${ico("bandeira")}</span><h2>PDI UFPB 2024–2028</h2></div>
-    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Onde o CT concentra os projetos</span><p>O Plano de Desenvolvimento Institucional da universidade: quatro perspectivas e 17 objetivos estratégicos. Cada projeto do CT aponta para um deles.</p><p><b>${ord[0].p} dos ${nP} projetos apontam para o ${ord[0].c}</b>, e ${ord[1].p} para o ${ord[1].c}. ${sem.length?sem.map(o=>o.c).join(" e ")+(sem.length===1?" ainda não tem":" ainda não têm")+" projeto do CT. ":""}Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
+    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Onde o CT concentra os projetos</span><p>O Plano de Desenvolvimento Institucional da universidade: quatro perspectivas e 17 objetivos estratégicos. Cada projeto do CT aponta para um deles. <b>${ord[0].p} dos ${nP} projetos apontam para o ${ord[0].c}</b>, e ${ord[1].p} para o ${ord[1].c}. ${sem.length?sem.map(o=>o.c).join(" e ")+(sem.length===1?" ainda não tem":" ainda não têm")+" projeto do CT. ":""}Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
     <div class="stats">
       <div class="stat"><b>${P.length}</b><span>perspectivas do mapa estratégico</span></div>
       <div class="stat"><b>${oes.length}</b><span>objetivos estratégicos</span></div>
