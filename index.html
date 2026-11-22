@@ -208,6 +208,10 @@ a.lc:hover,button.lc:hover{box-shadow:0 4px 12px rgba(28,36,49,.16);filter:brigh
 /* a coruja fala: o texto vai num balão branco com a ponta voltada para ela */
 .owlbox .t{position:relative;flex:1;min-width:0;font-size:18px;line-height:1.35;color:var(--petroleo);max-width:none;background:var(--cartao);border-radius:14px;padding:12px 18px 14px;box-shadow:0 1px 2px rgba(28,36,49,.06)}
 .owlbox .t::before{content:"";position:absolute;left:-11px;top:50%;margin-top:-9px;border:9px solid transparent;border-left:0;border-right:12px solid var(--cartao)}
+.owlbox .t p{margin:0} .owlbox .t p+p{margin-top:8px;font-size:15px;color:var(--texto-2)}
+.topo-coruja{margin:-6px 0 4px}
+.caixa-obj .t{background:var(--pastel-az);border-radius:12px;padding:14px 18px;font-size:15px;color:var(--petroleo)}
+.caixa-obj .h{display:block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;color:var(--petroleo)}
 .owlbox .h{display:block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px}
 .ob-blue{background:var(--pastel-az)} .ob-blue .h{color:var(--petroleo)}
 .ob-amber{background:var(--pastel-tc)} .ob-amber .h{color:var(--terracota)}
@@ -502,7 +506,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
       <!-- Sobre -->
       <section class="secao" id="sec-sobre" hidden>
         <div class="cab"><span class="n">7</span><h2>Sobre o portal</h2></div>
-        <p class="kicker">Como o portal está organizado, o que cada etiqueta quer dizer e o que ainda falta definir.</p>
+        <div class="owlbox topo-coruja ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Sobre o portal</span><p>Como o portal está organizado, o que cada etiqueta quer dizer e o que ainda falta definir.</p><p><b>Protótipo montado em 18/11/2026 e revisto em 19/11/2026.</b> Os links foram conferidos no site do CT em 18/11/2026. Os números do plano de gestão vêm da Carta Avançar CT e do PDI UFPB 2024–2028. Os de manutenção vêm do Painel de requisições do Cuida CT. Os de inspeção, de ocupação e de projetos foram contados nas páginas em 19/11/2026. A página da Carta reproduz a Carta Programa de setembro de 2024, e a contagem de projetos vem dos dados abertos do Planeja CT.</p></div></div>
         <div class="mapa">
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M5 5h2v2h-2zM11 5h2v2h-2zM17 5h2v2h-2zM5 11h2v2h-2zM11 11h2v2h-2zM17 11h2v2h-2zM5 17h2v2h-2zM11 17h2v2h-2zM17 17h2v2h-2z"/></svg><div><b>Seis seções, cada uma com a sua cor.</b> A cor aparece no menu, nos quadros de números e nos cartões. Cada seção tem endereço próprio, que pode ser enviado por link.<div class="leg"><div><span class="ponto" data-cor="1"></span>Acompanhamento da Gestão</div><div><span class="ponto" data-cor="2"></span>Infraestrutura</div><div><span class="ponto" data-cor="3"></span>Orçamento</div><div><span class="ponto" data-cor="4"></span>Gestão de Pessoas</div><div><span class="ponto" data-cor="5"></span>Serviços e Transparência</div><div><span class="ponto" data-cor="6"></span>Sistemas do CT</div></div></div></div>
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4"/></svg><div><b>Busca no topo.</b> Fica na barra superior, sempre visível. Digite uma palavra para procurar no portal inteiro: nomes, explicações e seções. Também vale o tipo: "painel", "sistema", "documento" ou "página". A tecla Esc limpa a busca.</div></div>
@@ -537,7 +541,6 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
           <div class="grupo-t"><h3>O que falta definir</h3></div>
           <ul class="ck" id="faltas"></ul>
         </div>
-        <div class="owlbox ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Nota de método</span><b>Protótipo montado em 18/11/2026 e revisto em 19/11/2026.</b> Os links foram conferidos no site do CT em 18/11/2026. Os números do plano de gestão vêm da Carta Avançar CT e do PDI UFPB 2024–2028. Os de manutenção vêm do Painel de requisições do Cuida CT. Os de inspeção, de ocupação e de projetos foram contados nas páginas em 19/11/2026. A página da Carta reproduz a Carta Programa de setembro de 2024, e a contagem de projetos vem dos dados abertos do Planeja CT.</div></div>
       </section>
 
       <!-- Resultado da busca -->
@@ -959,10 +962,9 @@ function desenharSetas(wrap){
 document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map(s=>`
   <section class="secao" id="sec-${s.id}" data-cor="${s.n}" hidden>
     <div class="cab"><span class="n">${s.n}</span><h2>${s.titulo}</h2></div>
-    <p class="kicker">${s.kicker}</p>
+    <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.kicker}</p><p>${s.leitura.tx}</p></div></div>
     
     ${s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
-    <div class="owlbox ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span>${s.leitura.tx}</div></div>
   </section>`).join(""));
 
 document.querySelectorAll(".ciclo-wrap[data-setas]").forEach(w=>{const f=()=>desenharSetas(w); new ResizeObserver(f).observe(w); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)});
@@ -1034,7 +1036,7 @@ function renderCarta(){
   document.getElementById("sec-carta").innerHTML=`
     <button class="voltar" type="button" data-ir="acompanhamento">${ico("volta")}Acompanhamento da Gestão</button>
     <div class="cab"><span class="n">${ico("doc")}</span><h2>Carta Avançar CT</h2></div>
-    <p class="kicker">O plano de gestão 2025–2028 da Direção do CT: o que será feito e que metas foram assumidas, por eixo, linha e ação.</p>
+    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Do plano ao projeto</span><p>O plano de gestão 2025–2028 da Direção do CT: o que será feito e que metas foram assumidas, por eixo, linha e ação.</p><p><b>${acoes.length-sem} das ${acoes.length} ações já têm projeto no Planeja CT.</b> São ${nP} projetos classificados na Carta: ${porEixo.map(x=>x[1]+" em "+x[0]).join(", ")}. As outras ${sem} ações ainda não têm projeto cadastrado. Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
     <div class="stats">
       <div class="stat"><b>${E.length}</b><span>eixos</span></div>
       <div class="stat"><b>${nL}</b><span>linhas de ação</span></div>
@@ -1042,7 +1044,7 @@ function renderCarta(){
       <div class="stat g"><b>${nM}</b><span>metas assumidas</span></div>
     </div>
     <p class="cap">Fonte: Carta Programa Avança CT, de setembro de 2024. O número de projetos de cada ação vem dos dados abertos do Planeja CT de ${PLANEJA_DATA}.</p>
-    <div class="owlbox ob-blue">${coruja(0)}<div class="t"><span class="h">Objetivo da gestão</span>${esc(CARTA.o)}<div class="valores">${CARTA.v.map(v=>`<span class="pill p-az" title="${esc(v[1])}">${esc(v[0])}</span>`).join("")}</div></div></div>
+    <div class="caixa-obj"><div class="t"><span class="h">Objetivo da gestão</span>${esc(CARTA.o)}<div class="valores">${CARTA.v.map(v=>`<span class="pill p-az" title="${esc(v[1])}">${esc(v[0])}</span>`).join("")}</div></div></div>
     <div class="barra-ac"><button class="bt2" type="button" data-abrir="1">Abrir todas as ações</button><button class="bt2" type="button" data-abrir="0">Fechar todas</button></div>
     ${E.map((e,i)=>`<div class="eixo">
       <div class="eixo-t"><span class="eixo-n">Eixo ${i+1}</span><h3>${esc(e.n)}</h3><span>${plProj(projE(e))}</span></div>
@@ -1051,14 +1053,14 @@ function renderCarta(){
           <div class="ac-corpo"><table class="cm"><thead><tr><th>O que será feito</th><th>Metas a atingir</th></tr></thead><tbody>${a.i.map(it=>`<tr><td>${it[0].map(esc).join("<br>")}</td><td>${it[1].length?`<ul>${it[1].map(m=>`<li>${esc(m)}</li>`).join("")}</ul>`:""}</td></tr>`).join("")}</tbody></table></div></details>`).join("")}
       </div>`).join("")}
     </div>`).join("")}
-    <div class="owlbox ob-blue">${coruja(2)}<div class="t"><span class="h">Do plano ao projeto</span><b>${acoes.length-sem} das ${acoes.length} ações já têm projeto no Planeja CT.</b> São ${nP} projetos classificados na Carta: ${porEixo.map(x=>x[1]+" em "+x[0]).join(", ")}. As outras ${sem} ações ainda não têm projeto cadastrado. Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</div></div>`;
+`;
 }
 function renderPDI(){
   const P=PDI.p, oes=P.flatMap(p=>p.o), nP=oes.reduce((n,o)=>n+o.p,0), ord=[...oes].sort((a,b)=>b.p-a.p), sem=oes.filter(o=>!o.p);
   document.getElementById("sec-pdi").innerHTML=`
     <button class="voltar" type="button" data-ir="acompanhamento">${ico("volta")}Acompanhamento da Gestão</button>
     <div class="cab"><span class="n">${ico("bandeira")}</span><h2>PDI UFPB 2024–2028</h2></div>
-    <p class="kicker">O Plano de Desenvolvimento Institucional da universidade: quatro perspectivas e 17 objetivos estratégicos. Cada projeto do CT aponta para um deles.</p>
+    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Onde o CT concentra os projetos</span><p>O Plano de Desenvolvimento Institucional da universidade: quatro perspectivas e 17 objetivos estratégicos. Cada projeto do CT aponta para um deles.</p><p><b>${ord[0].p} dos ${nP} projetos apontam para o ${ord[0].c}</b>, e ${ord[1].p} para o ${ord[1].c}. ${sem.length?sem.map(o=>o.c).join(" e ")+(sem.length===1?" ainda não tem":" ainda não têm")+" projeto do CT. ":""}Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
     <div class="stats">
       <div class="stat"><b>${P.length}</b><span>perspectivas do mapa estratégico</span></div>
       <div class="stat"><b>${oes.length}</b><span>objetivos estratégicos</span></div>
@@ -1070,7 +1072,7 @@ function renderPDI(){
       ${p.o.map(o=>`<div class="oe"><span class="oe-cod">${o.c}</span><span class="oe-n">${esc(o.n)}</span><span class="pill ${o.p?"p-az":"p-cz"}">${o.p?plProj(o.p)+" do CT":"sem projeto do CT"}</span></div>`).join("")}
     </div>`).join("")}
     <div class="barra-ac"><a class="bt" href="${PDI.pdf}" target="_blank" rel="noopener">Abrir o PDI completo em PDF ${ico("fora")}</a></div>
-    <div class="owlbox ob-blue">${coruja(2)}<div class="t"><span class="h">Onde o CT concentra os projetos</span><b>${ord[0].p} dos ${nP} projetos apontam para o ${ord[0].c}</b>, e ${ord[1].p} para o ${ord[1].c}. ${sem.length?sem.map(o=>o.c).join(" e ")+(sem.length===1?" ainda não tem":" ainda não têm")+" projeto do CT. ":""}Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</div></div>`;
+`;
 }
 renderCarta(); renderPDI();
 
