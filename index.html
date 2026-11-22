@@ -139,7 +139,26 @@ a{color:var(--petroleo)}
 .porta .qt .ic{width:15px;height:15px;transition:transform .15s} .porta:hover .qt .ic{transform:translateX(3px)}
 .porta:focus-visible{outline:2.5px solid var(--terracota);outline-offset:3px}
 a.porta{text-decoration:none}
-.portas.sis{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+/* Sistemas: cartão com imagem, etiqueta da categoria, nome e explicação */
+.sis-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.sis-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:16px 16px 18px;border:1px solid #D3DCE4;border-radius:18px;background:#F7F9FB;text-decoration:none;color:var(--texto);transition:box-shadow .15s,transform .15s}
+a.sis-card:hover{box-shadow:0 10px 24px rgba(28,36,49,.12);transform:translateY(-2px)}
+.sis-card:focus-visible{outline:2.5px solid var(--terracota);outline-offset:3px}
+.sis-img{position:relative;display:block;height:150px;border-radius:12px;overflow:hidden;margin-bottom:6px;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--sf) 80%,#fff) 0%,var(--sf) 55%,color-mix(in srgb,var(--sf) 70%,#000) 100%)}
+.sis-fundo{position:absolute;right:-26px;bottom:-34px;color:#fff;opacity:.13}
+.sis-fundo .ic{width:190px;height:190px;stroke-width:1.4}
+.sis-marca{position:absolute;left:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:10px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.12)}
+.sis-marca .ic{width:34px;height:34px;stroke-width:1.8}
+.sis-marca b{color:inherit;font-size:25px;font-weight:700;letter-spacing:-.01em;line-height:1.1;max-width:190px}
+.sis-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.sis-tag{display:inline-block;font-size:13px;line-height:1;padding:5px 12px;border:1.3px solid var(--sf);border-radius:999px;color:var(--sf);background:#fff}
+.sis-t{font-size:20px;font-weight:700;line-height:1.25;color:var(--petroleo)}
+.sis-d{font-size:15px;line-height:1.55;color:var(--texto-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sis-ir{margin-top:auto;padding-top:4px;font-size:12.5px;font-weight:600;color:var(--sc);display:inline-flex;align-items:center;gap:6px}
+.sis-ir .ic{width:14px;height:14px}
+.sis-card.sem{border-style:dashed;border-color:#8A96A1}
+.sis-card.sem .sis-img{background:linear-gradient(135deg,#C9D2DA,#8A96A1)}
 .porta.sis{min-height:196px}
 .porta.sis .qt{text-transform:none;letter-spacing:.02em;font-size:12.5px}
 .porta.sem{background:var(--cartao);color:var(--texto-2);border:1.5px dashed #8A96A1;box-shadow:none;cursor:default}
@@ -714,10 +733,11 @@ const SECOES=[
  ],
  grupos:[
   {t:"Conhecer",faixa:true,cor:"#256B6C",q:"Que serviços o CT oferece e como pedir cada um?",
-   tx:"A <b>carta de serviços</b> do CT é o <b>Ajuda CT</b>. Ali cada setor diz o que faz, quem pode pedir, o que é preciso e por onde o pedido entra.",
+   tx:"A <b>carta de serviços</b> do CT é o <b>Ajuda CT</b>. Ali cada setor diz o que faz, quem pode pedir, o que é preciso e por onde o pedido entra. O <b>Docs CT</b> usa a mesma plataforma, voltada a quem atende: mostra como o servidor executa cada trabalho pedido.",
    entrega:"o serviço certo e o caminho do pedido",
    itens:[
-    {id:"srv-carta",rot:"Carta de serviços",no:"1a",ic:"s_ajuda",tipo:"Sistema",sit:"ar",titulo:"Carta de serviços (Ajuda CT)",desc:"O que cada setor oferece e como pedir, no Ajuda CT.",url:"https://ajuda.ct.ufpb.br/"}
+    {id:"srv-carta",rot:"Carta de serviços",no:"1a",ic:"s_ajuda",tipo:"Sistema",sit:"ar",titulo:"Carta de serviços (Ajuda CT)",desc:"O que cada setor oferece e como pedir, no Ajuda CT.",url:"https://ajuda.ct.ufpb.br/"},
+    {id:"srv-docs",rot:"Docs CT",no:"1b",ic:"s_docs",tipo:"Sistema",sit:"ar",titulo:"Docs CT",desc:"Como o servidor executa o trabalho pedido. Pede login.",url:"https://docs.ct.ufpb.br/login"}
    ]},
   {t:"Pedir",faixa:true,cor:"#256B6C",q:"Onde cada serviço é pedido?",
    tx:"Cada pedido entra pelo seu sistema. O <b>Atende CT</b> recebe os pedidos de atendimento aos setores. A <b>Agenda CT</b>, o <b>Empresta CT</b> e o <b>Arquivo CT</b> cuidam de serviços próprios do Centro.",
@@ -897,7 +917,7 @@ const SECOES=[
   ]},
   {t:"Documentos e conhecimento",d:"",itens:[
    {id:"ajuda",ic:"s_ajuda",cor:7,tipo:"Sistema",sit:"ar",titulo:"Ajuda CT",desc:"Manuais, procedimentos e tutoriais dos setores.",url:"https://ajuda.ct.ufpb.br/"},
-   {id:"docs",ic:"s_docs",tipo:"Sistema",sit:"ar",titulo:"Docs CT",desc:"Documentos que padronizam processos. Pede login.",url:"https://docs.ct.ufpb.br/login"},
+   {id:"docs",ic:"s_docs",cor:7,tipo:"Sistema",sit:"ar",titulo:"Docs CT",desc:"A mesma plataforma do Ajuda CT, voltada a como o servidor executa cada trabalho pedido. Pede login.",url:"https://docs.ct.ufpb.br/login"},
    {id:"arquivo",ic:"s_arquivo",cor:7,tipo:"Sistema",sit:"ar",titulo:"Arquivo CT",desc:"O sistema do setor de Documentação e Arquivo.",url:"https://projetos.ct.ufpb.br/arqct/"},
    {id:"repositorio-sis",ic:"s_repositorio",cor:2,tipo:"Sistema",sit:"ar",titulo:"Repositório de Projetos do CT",desc:"Projetos da APLURB para os espaços do Centro.",url:"https://projetos.ct.ufpb.br/"}
   ]},
@@ -909,8 +929,7 @@ const SECOES=[
   {t:"Sistemas da UFPB",d:"Mantidos pela Superintendência de Tecnologia da Informação (STI).",itens:[
    {id:"sigaa",ic:"s_sigaa",tipo:"Sistema",sit:"ar",titulo:"SIGAA",desc:"Acadêmico da UFPB: turmas, matrículas e notas.",url:"https://sigaa.ufpb.br/sigaa/"},
    {id:"sipac",ic:"s_sipac",tipo:"Sistema",sit:"ar",titulo:"SIPAC",desc:"Processos, requisições, patrimônio e contratos.",url:"https://sipac.ufpb.br/public/jsp/portal.jsf"},
-   {id:"sigrh",ic:"s_sigrh",cor:4,tipo:"Sistema",sit:"ar",titulo:"SIGRH",desc:"Pessoal da UFPB: férias, frequência e afastamentos.",url:"https://sigrh.ufpb.br/sigrh/login.jsf"},
-   {id:"sigponto",ic:"s_sigponto",tipo:"Sistema",sit:"ar",titulo:"SIGPonto",desc:"Registro eletrônico de ponto dos servidores.",url:"https://sigponto.ufpb.br/sigponto/"},
+   {id:"sigrh",ic:"s_sigrh",cor:4,tipo:"Sistema",sit:"ar",titulo:"SIGRH",desc:"Pessoal da UFPB: férias, frequência e afastamentos.",url:"https://sigrh.ufpb.br/sigrh/login.jsf"},,
    {id:"webmail",ic:"s_webmail",tipo:"Sistema",sit:"ar",titulo:"WebMail",desc:"O e-mail institucional da UFPB, pelo navegador.",url:"https://webmail.ufpb.br/"}
   ]}
  ],
@@ -1021,11 +1040,12 @@ function desenharSetas(wrap){
 }
 
 /* pastilha grande dos sistemas, no estilo das Dimensões do Início */
-function cartaoSis(it){
-  const cor=it.cor||SEC_DE[it.id].n, st=SIT[it.sit]||SIT.ar;
-  const corpo=`<span class="porta-ic">${ico(it.ic||TIPO_IC[it.tipo])}</span><span class="porta-t">${it.titulo}</span><span class="porta-d">${it.desc}</span>`;
-  if(!it.url) return `<div class="porta sis sem" data-cor="${cor}" title="${esc(it.titulo)}: ${esc(st.sem||st.t)}"><span class="pill ${st.c} sis-pill">${st.t}</span>${corpo}<span class="qt">${esc(st.sem||st.t)}</span></div>`;
-  return `<a class="porta sis" data-cor="${cor}" href="${it.url}" target="_blank" rel="noopener" title="${esc(it.titulo)}: ${esc(it.desc)} Abre ${dominio(it.url)}.">${corpo}<span class="qt">Abrir · ${dominio(it.url)} ${ico(SETA_ORIG[origem(it)])}</span></a>`;
+function cartaoSis(it,g){
+  const cor=it.cor||SEC_DE[it.id].n, st=SIT[it.sit]||SIT.ar, ic=ico(it.ic||TIPO_IC[it.tipo]);
+  const img=`<span class="sis-img" aria-hidden="true"><span class="sis-marca">${ic}<b>${esc(it.titulo)}</b></span><span class="sis-fundo">${ic}</span></span>`;
+  const corpo=`${img}<span class="sis-tags"><span class="sis-tag">${esc(g.t)}</span>${it.url?"":`<span class="pill ${st.c}">${st.t}</span>`}</span><span class="sis-t">${esc(it.titulo)}</span><span class="sis-d">${esc(it.desc)}</span>`;
+  if(!it.url) return `<div class="sis-card sem" data-cor="${cor}" title="${esc(it.titulo)}: ${esc(st.sem||st.t)}">${corpo}</div>`;
+  return `<a class="sis-card" data-cor="${cor}" href="${it.url}" target="_blank" rel="noopener" title="${esc(it.titulo)}: ${esc(it.desc)} Abre ${dominio(it.url)}.">${corpo}<span class="sis-ir">${dominio(it.url)} ${ico(SETA_ORIG[origem(it)])}</span></a>`;
 }
 /* ===== Seções 1 a 4 ===== */
 document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map((s,ix)=>`
@@ -1033,7 +1053,7 @@ document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map
     <div class="cab"><span class="n">${ix+1}</span><h2>${s.titulo}</h2></div>
     <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.kicker}</p><p>${s.leitura.tx}</p></div></div>
     
-    ${s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div>${s.id==="sistemas"?`<div class="portas sis">${g.itens.map(i=>cartaoSis(i)).join("")}</div>`:`<div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div>`}</div>`).join("")}
+    ${s.id==="sistemas"?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
   </section>`).join(""));
 
 document.querySelectorAll(".ciclo-wrap[data-setas]").forEach(w=>{const f=()=>desenharSetas(w); new ResizeObserver(f).observe(w); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)});
