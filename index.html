@@ -556,7 +556,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
 
       <!-- Sobre -->
       <section class="secao" id="sec-sobre" hidden>
-        <div class="cab"><span class="n">9</span><h2>Sobre o portal</h2></div>
+        <div class="cab"><span class="n"><svg class="ic" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 11v6M12 7.5v.5"/></svg></span><h2>Sobre o portal</h2></div>
         <div class="owlbox topo-coruja ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Sobre o portal</span><p>Como o portal está organizado, o que cada etiqueta quer dizer e o que ainda falta definir. <b>Protótipo montado em 18/11/2026 e revisto em 19/11/2026.</b> Os links foram conferidos no site do CT em 18/11/2026. Os números do plano de gestão vêm da Carta Avançar CT e do PDI UFPB 2024–2028. Os de manutenção vêm do Painel de requisições do Cuida CT. Os de inspeção, de ocupação e de projetos foram contados nas páginas em 19/11/2026. A página da Carta reproduz a Carta Programa de setembro de 2024, e a contagem de projetos vem dos dados abertos do Planeja CT.</p></div></div>
         <div class="mapa">
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M5 5h2v2h-2zM11 5h2v2h-2zM17 5h2v2h-2zM5 11h2v2h-2zM11 11h2v2h-2zM17 11h2v2h-2zM5 17h2v2h-2zM11 17h2v2h-2zM17 17h2v2h-2z"/></svg><div><b>Sete seções, cada uma com a sua cor.</b> A cor aparece no menu, nos quadros de números e nos cartões. Cada seção tem endereço próprio, que pode ser enviado por link.<div class="leg"><div><span class="ponto" data-cor="1"></span>Acompanhamento da Gestão</div><div><span class="ponto" data-cor="7"></span>Serviços</div><div><span class="ponto" data-cor="2"></span>Infraestrutura</div><div><span class="ponto" data-cor="3"></span>Orçamento</div><div><span class="ponto" data-cor="4"></span>Gestão de Pessoas</div><div><span class="ponto" data-cor="5"></span>Transparência</div><div><span class="ponto" data-cor="6"></span>Sistemas do CT</div></div></div></div>
@@ -904,11 +904,31 @@ const SECOES=[
    {id:"proc-gp",rot:"Procedimentos",tipo:"Documento",sit:"ar",titulo:"Procedimentos da Gestão de Pessoas",desc:"O passo a passo dos pedidos de pessoal, no Ajuda CT.",url:"https://ajuda.ct.ufpb.br/books/procedimentos-da-gestao-de-pessoas"}
  ]},
  leitura:{c:"ob-blue",owl:2,h:"O que fica de fora",tx:"<b>Remuneração e benefícios não entram aqui.</b> Salários, auxílios e planos de saúde estão fora do escopo do Centro. A seção mostra o que o CT faz: selecionar, integrar, capacitar, avaliar, engajar e cuidar das rotinas de pessoal."}},
-{id:"academico",n:8,ic:"s_sigaa",titulo:"Acadêmico",
- kicker:"A gestão do ensino de graduação e de pós-graduação do Centro.",
- resumo:"Graduação e pós-graduação do Centro. Seção a criar.",
- grupos:[],
- leitura:{c:"ob-blue",owl:0,h:"Seção a criar",tx:"<b>Esta seção ainda vai ser criada.</b> Os sistemas, os painéis e os documentos da gestão acadêmica entram aqui quando a Direção definir o conteúdo."}},
+{id:"academico",n:8,ic:"s_sigaa",titulo:"Acadêmico",ciclo:true,
+ kicker:"A vida acadêmica do CT anda em três passos: ofertar, acompanhar e conhecer os egressos. Cada passo tem as suas fontes, e todas se abrem daqui.",
+ resumo:"Ofertar, acompanhar e conhecer os egressos: departamentos, cursos, SIGMA, painel de estudantes e SAEGO.",
+ retorno:"O que os egressos mostram orienta a revisão dos cursos, e o ciclo recomeça.",
+ grupos:[
+  {t:"Ofertar",cor:"#34507D",q:"Quem ensina e o que o CT oferece?",
+   tx:"O CT reúne <b>departamentos</b>, que cuidam dos docentes e das disciplinas, e as <b>coordenações</b> dos cursos de graduação e dos programas de pós-graduação. As páginas do site do CT levam a cada um.",
+   entrega:"cursos e programas com oferta e coordenação",itens:[
+   {id:"departamentos",ic:"predio",tipo:"Página",sit:"ar",titulo:"Departamentos do CT",desc:"Os departamentos do Centro, com as páginas de cada um.",url:"https://www.ct.ufpb.br/departamentos/"},
+   {id:"graduacao",ic:"s_sigaa",tipo:"Página",sit:"ar",titulo:"Cursos de graduação",desc:"As coordenações dos dez cursos de graduação do CT.",url:"https://www.ct.ufpb.br/graduacao/"},
+   {id:"pos-graduacao",ic:"livro",tipo:"Página",sit:"ar",titulo:"Programas de pós-graduação",desc:"Os programas de pós-graduação do CT, com as suas páginas.",url:"https://www.ct.ufpb.br/pos-graduacao/"}
+  ]},
+  {t:"Acompanhar",cor:"#34507D",q:"Como andam os cursos e os estudantes?",
+   tx:"O <b>SIGMA</b> reúne os dados dos cursos, departamentos e centros e os indicadores do INEP. O <b>painel de estudantes</b> da UFPB mostra os discentes por curso, forma de ingresso, cota, gênero e turno.",
+   entrega:"cursos e estudantes à vista, com indicadores",itens:[
+   {id:"sigma",ic:"up",tipo:"Sistema",sit:"ar",titulo:"SIGMA",desc:"Gestão e monitoramento acadêmico da UFPB: cursos e indicadores do INEP. Pede login.",url:"https://sigma.ufpb.br/"},
+   {id:"painel-estudantes",ic:"pessoas",tipo:"Painel",sit:"ar",titulo:"Painel de estudantes",desc:"Os estudantes da UFPB por centro, curso, ingresso, cota, gênero e turno.",url:"https://metabase.ufpb.br/public/dashboard/fb949a9e-8cfe-4a20-bdf1-dec01acfad7d?campus=&centro=&cota_sigla=&curso=&forma_de_ingresso=&g%25C3%25AAnero=&grau_acad%25C3%25AAmico=&modalidade_educa%25C3%25A7%25C3%25A3o=&turno="}
+  ]},
+  {t:"Conhecer os egressos",cor:"#34507D",q:"Para onde vão os formados do CT?",
+   tx:"O <b>SAEGO</b> é o sistema de acompanhamento de egressos da UFPB, mantido pelo LEMA. É a fonte para saber o que acontece com quem se forma no CT.",
+   entrega:"o retorno de quem se formou",itens:[
+   {id:"saego",ic:"pessoa",tipo:"Sistema",sit:"ar",titulo:"SAEGO",desc:"Sistema de Acompanhamento de Egressos da UFPB, do LEMA.",url:"https://lema.ufpb.br/saego/"}
+  ]}
+ ],
+ leitura:{c:"ob-blue",owl:2,h:"Do curso ao egresso",tx:"<b>A gestão acadêmica começa na oferta e termina no egresso.</b> Os departamentos e as coordenações organizam o ensino; o SIGMA e o painel de estudantes mostram como ele anda; o SAEGO acompanha quem já se formou."}},
 {id:"sistemas",n:6,ic:"grade",titulo:"Sistemas do CT",
  kicker:"Os sistemas que o Centro mantém e os da UFPB que a comunidade usa no dia a dia. Cada um leva a cor da seção em que é usado; os demais ficam em dourado.",
  resumo:"Os sistemas que o Centro mantém e os da UFPB que a comunidade usa.",
@@ -1084,7 +1104,7 @@ function cartaoSis(it,g){
 /* ===== Seções 1 a 4 ===== */
 document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map((s,ix)=>`
   <section class="secao" id="sec-${s.id}" data-cor="${s.n}" hidden>
-    <div class="cab"><span class="n">${ix+1}</span><h2>${s.titulo}</h2></div>
+    <div class="cab"><span class="n">${ico(s.ic)}</span><h2>${s.titulo}</h2></div>
     <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.kicker} ${s.leitura.tx}</p></div></div>
     
     ${(s.id==="sistemas"||s.id==="transparencia")?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
@@ -1100,10 +1120,10 @@ document.getElementById("portas").innerHTML=SECOES.map(s=>{const n=s.grupos.redu
 /* todos os painéis do portal, com a situação e os três campos que a Direção vai informar */
 const SIT_P={ar:["Próprio","p-vd"],pbi:["Power BI","p-am"],criar:["A construir","p-cz"]};
 const nP=k=>PAINEIS.filter(p=>p.sit===k).length;
-document.getElementById("contaPbi").textContent=PAINEIS.length+" painéis: "+nP("ar")+" próprios, "+nP("pbi")+" em Power BI e "+nP("criar")+" a construir.";
+document.getElementById("contaPbi").textContent=PAINEIS.length+" painéis: "+PAINEIS.filter(p=>p.sit==="ar"&&origem(p)!=="ufpb").length+" próprios, "+PAINEIS.filter(p=>origem(p)==="ufpb").length+" da UFPB, "+nP("pbi")+" em Power BI e "+nP("criar")+" a construir.";
 const inf=v=>v||'<span class="adef">A informar</span>';
 document.getElementById("tPbi").innerHTML="<thead><tr><th>Painel</th><th>Seção</th><th>Situação</th><th>Fonte</th><th>Periodicidade</th><th>Responsável</th><th>Abrir</th></tr></thead><tbody>"+
-  PAINEIS.map(p=>{const st=SIT_P[p.sit]||["A confirmar","p-vi"];
+  PAINEIS.map(p=>{const st=(p.sit==="ar"&&origem(p)==="ufpb")?["Da UFPB","p-az"]:(SIT_P[p.sit]||["A confirmar","p-vi"]);
     const nota=p.antigo?`no lugar do Power BI "${p.antigo}"`:(p.sit==="pbi"?"substituto: "+(p.sub||"a definir"):"");
     return `<tr><td class="a">${p.titulo}${nota?`<span class="nota">${nota}</span>`:""}</td><td>${SEC_DE[p.id].titulo}</td><td><span class="pill ${st[1]}">${st[0]}</span></td><td>${inf(p.fonte)}</td><td>${inf(p.periodicidade)}</td><td>${inf(p.responsavel)}</td><td>${p.url?`<a class="lk" href="${p.url}" target="_blank" rel="noopener">Abrir ${ico("fora")}</a>`:'<span class="adef">A criar</span>'}</td></tr>`}).join("")+"</tbody>";
 document.getElementById("faltas").innerHTML=[
@@ -1111,7 +1131,7 @@ document.getElementById("faltas").innerHTML=[
   "<b>Substituto e ordem de troca</b> dos painéis que ainda estão em Power BI, e quem constrói os que faltam.",
   "<b>Endereço do portal</b> e onde ele ficará hospedado.",
   "<b>Quem atualiza cada seção</b> e com que frequência.",
-  "<b>Conteúdo das páginas novas:</b> obras em andamento e a seção Acadêmico.",
+  "<b>Conteúdo das páginas novas:</b> obras em andamento.",
   "<b>Leitura ao vivo do Planeja CT</b> nas páginas da Carta e do PDI, no lugar dos dados de "+PLANEJA_DATA+".",
   "<b>Endereço público do PDF</b> da Carta Avançar CT, para a página poder oferecer o documento original."
 ].map(t=>`<li>${ico("check")}<span>${t}</span></li>`).join("");
