@@ -312,14 +312,20 @@ a.lc:hover,button.lc:hover{box-shadow:0 4px 12px rgba(28,36,49,.16);filter:brigh
 /* fluxo: setas entre as pastilhas */
 .ciclo.fluxo .passo{grid-row:span 7}
 .ciclo.fluxo .cards{display:contents}
-.ciclo.fluxo .cards>.lc{position:relative;width:auto;margin:0 16px;justify-self:stretch;align-self:stretch}
-.ciclo.fluxo .cards>.lc:first-child{margin-top:14px}
+.ciclo.fluxo .cards>:is(.lc,.sis-card){position:relative;width:auto;margin:0 16px;justify-self:stretch;align-self:stretch}
+.ciclo.fluxo .cards>:is(.lc,.sis-card):first-child{margin-top:14px}
 .liga{display:grid;place-items:center;height:28px;color:var(--sf)}
+.passo .sis-card{gap:8px;padding:12px 12px 14px;background:#fff}
+.passo .sis-img{height:112px}
+.passo .sis-marca b{font-size:21px;max-width:240px}
+.passo .sis-t{font-size:18px}
+.passo .sis-d{font-size:14px}
+.sis-card .pill{font-size:10px}
 .liga .ic{width:22px;height:22px}
-.ciclo.fluxo .passo.entra .cards>.lc:last-child::before{content:"";position:absolute;right:calc(100% + 4px);top:50%;width:61px;height:2px;margin-top:-1px;background:var(--sf);pointer-events:none}
-.ciclo.fluxo .passo.entra .cards>.lc:last-child::after{content:"";position:absolute;right:calc(100% + 5px);top:50%;width:9px;height:9px;border-top:2px solid var(--sf);border-right:2px solid var(--sf);transform:translateY(-50%) rotate(45deg);pointer-events:none}
+.ciclo.fluxo .passo.entra .cards>:is(.lc,.sis-card):last-child::before{content:"";position:absolute;right:calc(100% + 4px);top:50%;width:61px;height:2px;margin-top:-1px;background:var(--sf);pointer-events:none}
+.ciclo.fluxo .passo.entra .cards>:is(.lc,.sis-card):last-child::after{content:"";position:absolute;right:calc(100% + 5px);top:50%;width:9px;height:9px;border-top:2px solid var(--sf);border-right:2px solid var(--sf);transform:translateY(-50%) rotate(45deg);pointer-events:none}
 @container ciclo (max-width:1099px){
-  .ciclo.fluxo .passo.entra .cards>.lc:last-child::before,.ciclo.fluxo .passo.entra .cards>.lc:last-child::after{display:none}
+  .ciclo.fluxo .passo.entra .cards>:is(.lc,.sis-card):last-child::before,.ciclo.fluxo .passo.entra .cards>:is(.lc,.sis-card):last-child::after{display:none}
   .ciclo{grid-template-columns:1fr;row-gap:32px}
   .passo-top{clip-path:none;margin:0 -1px;padding-right:16px;border-radius:var(--raio) var(--raio) 0 0}
   .passo:not(:last-child)::after{content:"";position:absolute;left:50%;bottom:-24px;transform:translateX(-50%);border:11px solid transparent;border-bottom:0;border-top-color:var(--pc)}
@@ -972,15 +978,28 @@ function cartao(it,comSecao,mini){
   </${tag}>`;
 }
 
+function cartaoImg(it){
+  const st=SIT[it.sit]||SIT.ar, ic=ico(it.ic||TIPO_IC[it.tipo]), cor=it.cor||SEC_DE[it.id].n, nome=it.rot||it.titulo;
+  const tag=it.rota?"button":(it.url?"a":"div");
+  const attrs=it.rota?`type="button" data-ir="${it.rota}"`:(it.url?`href="${it.url}" target="_blank" rel="noopener"`:"");
+  const orig=origem(it), destino=it.rota?"no portal":(it.url?dominio(it.url):(st.sem||st.t));
+  return `<${tag} class="sis-card${it.rota||it.url?"":" sem"}" data-id="${it.id}" data-sit="${it.sit}" data-cor="${cor}" ${attrs} title="${esc(it.tipo+": "+it.titulo+". "+it.desc)}">
+    <span class="sis-img" aria-hidden="true"><span class="sis-marca">${ic}<b>${esc(nome)}</b></span><span class="sis-fundo">${ic}</span></span>
+    <span class="sis-tags"><span class="sis-tag">${it.tipo}</span><span class="pill ${st.c}">${st.t}</span></span>
+    <span class="sis-t">${esc(it.titulo)}</span><span class="sis-d">${it.desc}</span>
+    <span class="sis-ir">${esc(destino)} ${orig?ico(SETA_ORIG[orig]):""}</span>
+  </${tag}>`;
+}
 /* ===== Infográfico do ciclo (Planejar, Implantar, Relatar) ===== */
 function blocos(itens){
   const bl=[]; itens.forEach(x=>{const u=bl[bl.length-1]; if(x.mini){if(u&&u.minis)u.minis.push(x);else bl.push({minis:[x]})}else bl.push(x)});
   return bl.map(b=>b.minis?`<div class="minis">${b.minis.map(x=>cartao(x,false,true)).join("")}</div>`:cartao(b)).join("");
 }
 function ciclo(s){
+  const C=s.id==="acompanhamento"?cartaoImg:cartao;
   /* com fluxo: duas pastilhas por passo, ligadas por uma seta; "entra" liga a última pastilha do passo anterior à última deste */
   const pastilhas=g=>s.fluxo&&g.itens.length===2
-    ?cartao(g.itens[0])+`<span class="liga" aria-hidden="true">${g.seta?ico(g.seta==="cima"?"cima":"baixo"):""}</span>`+cartao(g.itens[1])
+    ?C(g.itens[0])+`<span class="liga" aria-hidden="true">${g.seta?ico(g.seta==="cima"?"cima":"baixo"):""}</span>`+C(g.itens[1])
     :blocos(g.itens);
   return `<div class="ciclo-wrap">${s.caminho?`<p class="so-leitor">${s.caminho}</p>`:""}
     <div class="ciclo${s.fluxo?" fluxo":""}">${s.grupos.map((g,i)=>`<div class="passo${g.entra?" entra":""}" style="--pc:${g.cor}">
