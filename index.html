@@ -149,24 +149,26 @@ a.porta{text-decoration:none}
 /* faixas horizontais com cartões do tamanho dos de Sistemas */
 .sis-grade,.fx-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),290px));gap:24px 28px;justify-content:start}
 .ciclo.fx{display:flex;flex-direction:column;gap:0}
-.fx-passo{display:grid;grid-template-columns:52px minmax(0,1fr);background:var(--cartao);border:1px solid var(--borda);border-radius:var(--raio)}
+.fx-passo{display:grid;grid-template-columns:52px minmax(0,320px) minmax(0,1fr);background:var(--cartao);border:1px solid var(--borda);border-radius:var(--raio)}
 .fx-rot{grid-row:1 / span 2;background:var(--pc);color:#fff;border-radius:var(--raio) 0 0 var(--raio);margin:-1px 0 -1px -1px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding:18px 0}
 .fx-rot h3{writing-mode:vertical-rl;transform:rotate(180deg);font-size:20px;font-weight:600;color:#fff;margin:0;white-space:nowrap}
 .fx-rot .passo-n{order:2}
-.fx-esq{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,300px);gap:4px 40px;padding:20px 22px 0 24px}
-.fx-q{grid-column:1;margin:0;font-size:15px;font-weight:600;color:var(--pc)}
-.fx-tx{grid-column:1;margin:0;font-size:14px;line-height:1.55;color:var(--texto-2);max-width:110ch}
-.fx-fim{grid-column:2;grid-row:1 / span 2;align-self:start;margin:0;padding-left:16px;border-left:2px solid var(--pc);font-size:13px;color:var(--texto-2)}
+.fx-esq{display:flex;flex-direction:column;padding:22px 0 22px 24px}
+.fx-q{margin:0 0 8px;font-size:15px;font-weight:600;color:var(--pc)}
+.fx-tx{margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--texto-2)}
+.fx-fim{margin:auto 0 0;padding-top:12px;border-top:1px solid var(--borda);font-size:13px;color:var(--texto-2)}
 .fx-fim span{display:block;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--pc);margin-bottom:2px}
-.fx-cards{grid-column:2;padding:20px 22px 22px 24px;align-content:start}
+.fx-cards{padding:22px 22px 22px 34px;align-content:start;gap:24px 24px}
 .fx-liga{display:flex;align-items:center;gap:8px;height:44px;padding-left:16px;color:var(--sf);font-size:12.5px;font-weight:500}
 .fx-liga .ic{width:20px;height:20px}
 .fx-liga span{color:var(--texto-2)}
 .fx-liga-base{padding-left:2px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .fx-base .fx-rot h3{font-size:16px}
 .fx-wrap .retorno.plano{margin-top:14px}
-@container ciclo (max-width:900px){
-  .fx-esq{grid-template-columns:1fr} .fx-fim{grid-column:1;grid-row:auto;margin-top:10px}
+@container ciclo (max-width:1100px){
+  .fx-passo{grid-template-columns:52px minmax(0,1fr)}
+  .fx-esq{padding-right:22px;padding-bottom:4px} .fx-fim{margin-top:14px}
+  .fx-cards{grid-column:2;padding:16px 22px 22px 24px}
 }
 @container ciclo (max-width:560px){
   .fx-passo{grid-template-columns:40px minmax(0,1fr)}
