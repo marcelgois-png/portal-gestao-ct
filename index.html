@@ -119,24 +119,30 @@ body.recolhido .item span,body.recolhido .lateral .rot,body.recolhido .rodape-la
 .hero .fala::before{content:"";position:absolute;left:-11px;top:50%;margin-top:-9px;border:9px solid transparent;border-left:0;border-right:12px solid var(--cartao)}
 .hero .bub{font-size:18px;line-height:1.35;color:var(--petroleo);font-weight:600;max-width:none;text-wrap:pretty}
 .hero p.sub{margin-top:10px;color:var(--texto-2);max-width:66ch}
+/* Início: pastilhas no estilo do Farol (cartão cheio na cor da seção) */
 .portas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media (max-width:1240px){.portas{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.porta{display:flex;flex-direction:column;align-items:stretch;background:var(--cartao);border:1px solid var(--borda);border-radius:var(--raio);overflow:hidden;padding:0;cursor:pointer;text-align:left;width:100%;transition:box-shadow .15s}
-.porta:hover{box-shadow:0 8px 20px rgba(40,62,76,.16)}
-.porta-top{display:flex;align-items:center;gap:12px;background:var(--sf);color:#fff;padding:12px 16px}
-.porta-top .ic{width:22px;height:22px}
-.porta-t{flex:1;min-width:0;font-weight:600;color:#fff;font-size:18px;line-height:1.2}
-.porta-n{font-size:22px;font-weight:600;line-height:1;opacity:.6}
-.porta-corpo{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px 16px 14px}
-.porta-d{font-size:13px;color:var(--texto-2)}
-.porta .qt{font-size:13px;font-weight:600;color:var(--sf);display:inline-flex;align-items:center;gap:6px}
-.porta .qt .ic{width:16px;height:16px}
-.atalhos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px}
-.atalho{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:10px;background:var(--cartao);border:1px solid var(--borda);text-decoration:none;color:var(--petroleo);font-weight:500;cursor:pointer;text-align:left;width:100%}
-.atalho:hover{border-color:var(--sc)}
-.at-ic{flex:0 0 auto;width:30px;height:30px;border-radius:8px;background:var(--sp);color:var(--sc);display:grid;place-items:center}
-.at-ic .ic{width:17px;height:17px}
-.atalho .fim{margin-left:auto;color:var(--texto-3);width:16px;height:16px}
+.porta{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:236px;padding:20px 20px 18px;border:0;border-radius:14px;cursor:pointer;text-align:left;color:#fff;
+  background:linear-gradient(135deg,var(--sf) 0%,color-mix(in srgb,var(--sf) 82%,#fff) 100%);box-shadow:0 1px 2px rgba(28,36,49,.08);transition:transform .15s,box-shadow .15s}
+.porta:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(28,36,49,.18)}
+.porta-ic{width:46px;height:46px;border-radius:11px;background:rgba(255,255,255,.17);display:grid;place-items:center;margin-bottom:6px}
+.porta-ic .ic{width:22px;height:22px;color:#fff}
+.porta-t{font-weight:700;font-size:19px;line-height:1.25;color:#fff}
+.porta-d{font-size:14px;line-height:1.5;color:rgba(255,255,255,.92)}
+.porta .qt{margin-top:auto;padding-top:10px;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#fff;display:inline-flex;align-items:center;gap:6px}
+.porta .qt .ic{width:15px;height:15px;transition:transform .15s} .porta:hover .qt .ic{transform:translateX(3px)}
+.porta:focus-visible{outline:2.5px solid var(--terracota);outline-offset:3px}
+/* atalhos: versão clara, no pastel da seção */
+.atalhos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1240px){.atalhos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.atalho{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:150px;padding:18px 18px 16px;border-radius:14px;text-decoration:none;cursor:pointer;text-align:left;width:100%;
+  color:var(--petroleo);font-weight:600;font-size:15px;line-height:1.35;border:1px solid color-mix(in srgb,var(--sf) 22%,#fff);
+  background:linear-gradient(135deg,var(--sp) 0%,color-mix(in srgb,var(--sp) 55%,#fff) 100%);transition:transform .15s,box-shadow .15s}
+.atalho:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(28,36,49,.12)}
+.at-ic{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:var(--sf);color:#fff;display:grid;place-items:center}
+.at-ic .ic{width:19px;height:19px}
+.at-cta{margin-top:auto;font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--sc);display:inline-flex;align-items:center;gap:6px}
+.at-cta .ic{width:15px;height:15px}
 
 /* grupos e cartões de item */
 .grupo{display:flex;flex-direction:column;gap:8px}
@@ -405,6 +411,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
   .titulo-rel span,.insta span{display:none}
   .marca-ct img{height:32px}
   .portas,.atalhos,.mapa{grid-template-columns:1fr}
+  .porta{min-height:0;padding:16px 16px 14px} .atalho{min-height:0;padding:14px 16px}
   .topo .campo{margin-left:12px}
   .conteudo{padding-left:16px;padding-right:16px}
 }
@@ -960,14 +967,13 @@ document.querySelectorAll(".ciclo-wrap[data-setas]").forEach(w=>{const f=()=>des
 
 /* ===== Início ===== */
 document.getElementById("portas").innerHTML=SECOES.map(s=>{const n=s.grupos.reduce((t,g)=>t+g.itens.length,0);
-  return `<button class="porta" type="button" data-ir="${s.id}" data-cor="${s.n}"><span class="porta-top">${ico(s.ic)}<span class="porta-t">${s.titulo}</span><span class="porta-n">${s.n}</span></span><span class="porta-corpo"><span class="porta-d">${s.resumo}</span><span class="qt">${n} itens ${ico("seta")}</span></span></button>`}).join("");
+  return `<button class="porta" type="button" data-ir="${s.id}" data-cor="${s.n}"><span class="porta-ic">${ico(s.ic)}</span><span class="porta-t">${s.titulo}</span><span class="porta-d">${s.resumo}</span><span class="qt">Abrir a seção · ${n} itens ${ico("seta")}</span></button>`}).join("");
 document.getElementById("atalhos").innerHTML=[
   {t:"Acompanhar uma requisição de manutenção",ic:"predio",cor:2,url:POR_ID.cuida.url},
   {t:"Ler o relatório de gestão mais recente",ic:"doc",cor:1,url:POR_ID.relatorios.url},
   {t:"Ver a execução do orçamento",ic:"up",cor:3,url:POR_ID.execucao.url},
   {t:"Consultar um manual ou procedimento",ic:"link",cor:6,url:POR_ID.ajuda.url}
-].map(a=>a.ficha?`<button class="atalho" type="button" data-ficha="${a.ficha}" data-cor="${a.cor}"><span class="at-ic">${ico(a.ic)}</span><span>${a.t}</span>${ico("seta","fim")}</button>`
-  :`<a class="atalho" href="${a.url}" target="_blank" rel="noopener" data-cor="${a.cor}"><span class="at-ic">${ico(a.ic)}</span><span>${a.t}</span>${ico("fora","fim")}</a>`).join("");
+].map(a=>`<a class="atalho" href="${a.url}" target="_blank" rel="noopener" data-cor="${a.cor}"><span class="at-ic">${ico(a.ic)}</span><span>${a.t}</span><span class="at-cta">Abrir ${ico(SETA_ORIG[origem({url:a.url})])}</span></a>`).join("");
 
 /* ===== Sobre ===== */
 /* todos os painéis do portal, com a situação e os três campos que a Direção vai informar */
