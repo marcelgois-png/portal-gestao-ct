@@ -160,6 +160,10 @@ a.porta{text-decoration:none}
 .fx-fim{margin:auto 0 0;padding-top:12px;border-top:1px solid var(--borda);font-size:13px;color:var(--texto-2)}
 .fx-fim span{display:block;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--pc);margin-bottom:2px}
 .fx-cards{grid-column:2 / -1;display:grid;grid-template-columns:subgrid;gap:24px;padding:22px 0;align-content:start}
+@container ciclo (min-width:1150px){
+  .fx-cards>[data-id="ajuda-infra"]{grid-area:1/1} .fx-cards>[data-id="pedir-manutencao"]{grid-area:1/2}
+  .fx-cards>[data-id="processos-manutencao"]{grid-area:2/1} .fx-cards>[data-id="cuida"]{grid-area:2/2} .fx-cards>[data-id="painel-cuida"]{grid-area:2/3}
+}
 .fx-liga{display:flex;align-items:center;gap:8px;height:44px;padding-left:16px;color:var(--sf);font-size:12.5px;font-weight:500}
 .fx-liga .ic{width:20px;height:20px}
 .fx-liga span{color:var(--texto-2)}
@@ -186,9 +190,10 @@ button.sis-card:hover{box-shadow:0 10px 24px rgba(28,36,49,.12);transform:transl
   background:linear-gradient(135deg,color-mix(in srgb,var(--sf) 80%,#fff) 0%,var(--sf) 55%,color-mix(in srgb,var(--sf) 70%,#000) 100%)}
 .sis-fundo{position:absolute;right:-26px;bottom:-34px;color:#fff;opacity:.13}
 .sis-fundo .ic{width:190px;height:190px;stroke-width:1.4}
-.sis-marca{position:absolute;left:20px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:10px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.12)}
+.sis-marca{position:absolute;left:20px;right:24px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:10px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.12)}
 .sis-marca .ic{width:34px;height:34px;stroke-width:1.8}
-.sis-marca b{color:inherit;font-size:25px;font-weight:700;letter-spacing:-.01em;line-height:1.1;max-width:190px}
+.sis-marca b{color:inherit;font-size:24px;font-weight:700;letter-spacing:-.01em;line-height:1.1;min-width:0;overflow-wrap:break-word}
+.sis-marca .ic{flex:0 0 auto}
 .sis-tags{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .sis-tag{display:inline-block;font-size:13px;line-height:1;padding:5px 12px;border:1.3px solid var(--sf);border-radius:999px;color:var(--sf);background:#fff}
 .sis-t{font-size:20px;font-weight:700;line-height:1.25;color:var(--petroleo)}
@@ -1140,8 +1145,8 @@ const FX={
  acompanhamento:{ordem:[["pdi","carta"],["planeja-manual","planeja-acomp"],["acoes","relatorios"]],
    setas:[["pdi","carta"],["planeja-manual","planeja-acomp"],["acoes","relatorios"]],liga:["o compromisso vira projeto","o projeto vira relato"]},
  servicos:{setas:[],liga:["segue para o pedido","segue para o acompanhamento"]},
- infraestrutura:{ordem:[["ocupacao","inspecao"],["ajuda-infra","pedir-manutencao","cuida","painel-cuida","processos-manutencao"],["manual-aplurb","pedir-projeto","repositorio","obras"]],
-   setas:[["ajuda-infra","pedir-manutencao"],["pedir-manutencao","cuida"],["cuida","painel-cuida"],["manual-aplurb","pedir-projeto"],["pedir-projeto","repositorio"],["repositorio","obras"]],
+ infraestrutura:{ordem:[["ocupacao","inspecao"],["ajuda-infra","pedir-manutencao","processos-manutencao","cuida","painel-cuida"],["manual-aplurb","pedir-projeto","repositorio","obras"]],
+   setas:[["ajuda-infra","pedir-manutencao"],["pedir-manutencao","cuida"],["processos-manutencao","cuida"],["painel-cuida","cuida"],["manual-aplurb","pedir-projeto"],["pedir-projeto","repositorio"],["repositorio","obras"]],
    liga:["o diagnóstico vira pedido de manutenção","a manutenção pode pedir um projeto"]},
  orcamento:{ordem:[["pca","plan-orc","irps","proc-aquis"],["codeor","financeiro"],["almoxarifado-painel","execucao","patrimonio-painel"]],
    setas:[["pca","plan-orc"],["plan-orc","irps"],["proc-aquis","irps"],["execucao","almoxarifado-painel"],["execucao","patrimonio-painel"]],liga:["segue para a execução","segue para o acompanhamento"]},
