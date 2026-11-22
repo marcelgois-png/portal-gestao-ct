@@ -26,12 +26,12 @@
   --s8:#3D5A8A; --s8-f:#34507D; --s8-p:#E4EAF4;   /* Acadêmico: azul */
   --s7:#2C7A7B; --s7-f:#256B6C; --s7-p:#E0F0F0;   /* Serviços: verde-azulado */   /* Sistemas do CT: dourado das corujas */
   --fonte:"Source Sans 3","Segoe UI",Arial,sans-serif;
-  --topo:64px; --menu:52px; --raio:12px;
+  --topo:64px; --menu:52px; --onda:48px; --raio:12px;
   --safe-t:env(safe-area-inset-top,0px);
   color-scheme:light;
 }
 *{box-sizing:border-box}
-html{padding-top:var(--safe-t);padding-bottom:env(safe-area-inset-bottom,0px);scroll-padding-top:calc(var(--safe-t) + var(--topo))}
+html{padding-top:var(--safe-t);padding-bottom:env(safe-area-inset-bottom,0px);scroll-padding-top:calc(var(--safe-t) + var(--topo) + var(--onda) + var(--menu))}
 html,body{background:var(--fundo);color:var(--texto)}
 body{--sc:var(--s1);--sf:var(--s1-f);--sp:var(--s1-p)}
 [data-cor="1"]{--sc:var(--s1);--sf:var(--s1-f);--sp:var(--s1-p)}
@@ -73,10 +73,10 @@ a{color:var(--petroleo)}
 
 /* ── Estrutura ── */
 .casca{display:block}
-.onda-topo{display:block;width:100%;height:56px;margin-top:-8px;transform:rotate(180deg);background:var(--cartao);position:relative;z-index:31}
-@media (max-width:820px){.onda-topo{height:34px;margin-top:-6px}}
+.onda-topo{display:block;width:100%;height:calc(var(--onda) + 8px);margin-top:-8px;transform:rotate(180deg);background:var(--cartao);position:sticky;top:calc(var(--safe-t) + var(--topo) - 8px);z-index:31}
+@media (max-width:820px){:root{--onda:28px}}
 /* barra de menus (no lugar do menu lateral), fixa logo abaixo da barra superior */
-.menubar{position:sticky;top:calc(var(--safe-t) + var(--topo));z-index:30;display:flex;align-items:stretch;gap:2px;height:var(--menu);
+.menubar{position:sticky;top:calc(var(--safe-t) + var(--topo) + var(--onda));z-index:30;display:flex;align-items:stretch;gap:2px;height:var(--menu);
   background:var(--cartao);border-bottom:1px solid var(--borda);box-shadow:0 2px 6px rgba(28,36,49,.05);
   padding:0 max(16px,env(safe-area-inset-left,0px));overflow-x:auto;scrollbar-width:none}
 .menubar::-webkit-scrollbar{display:none}
@@ -449,7 +449,7 @@ table.q td .nota{display:block;font-size:12px;font-weight:400;color:var(--texto-
 ul.ck{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;max-width:80ch}
 ul.ck li{display:flex;gap:10px;align-items:flex-start}
 ul.ck li .ic{color:var(--terracota);margin-top:2px}
-.principal{display:flex;flex-direction:column;min-height:calc(100dvh - var(--topo) - var(--menu) - var(--safe-t))}
+.principal{display:flex;flex-direction:column;min-height:calc(100dvh - var(--topo) - var(--onda) - var(--menu) - var(--safe-t))}
 .principal>.conteudo{flex:1 0 auto}
 .rodape{margin-top:24px;color:#fff}
 .rodape .onda{display:block;width:100%;height:72px;margin-bottom:-8px}
@@ -500,7 +500,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
   details.ac>summary{flex-wrap:wrap} details.ac .nome{flex-basis:calc(100% - 30px)} details.ac .meta{margin-left:26px}
   .ac-corpo{padding-left:12px} table.cm thead{display:none} table.cm td{display:block;width:auto!important;padding:6px 0} table.cm td:first-child{border-bottom:0;padding-bottom:0}
 }
-@media (min-width:821px){html{zoom:.8} .principal{min-height:calc(100dvh / .8 - var(--topo) - var(--menu) - var(--safe-t))} .tabwrap{max-height:min(72vh,650px)}}
+@media (min-width:821px){html{zoom:.8} .principal{min-height:calc(100dvh / .8 - var(--topo) - var(--onda) - var(--menu) - var(--safe-t))} .tabwrap{max-height:min(72vh,650px)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
