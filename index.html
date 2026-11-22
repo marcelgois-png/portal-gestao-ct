@@ -254,7 +254,11 @@ a.lc:hover,button.lc:hover{box-shadow:0 4px 12px rgba(28,36,49,.16);filter:brigh
 .topo-coruja{margin:-6px 0 4px}
 .caixa-obj .t{background:var(--pastel-az);border-radius:12px;padding:14px 18px;font-size:15px;color:var(--petroleo)}
 .caixa-obj .h{display:block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;color:var(--petroleo)}
-.owlbox .h{display:block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px}
+.owlbox .h{display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.topo-coruja .t{font-weight:600;text-wrap:pretty}
+.topo-coruja .t b{font-weight:inherit}
+.topo-coruja .h{color:var(--sf)!important}
+.topo-coruja .owl{width:58px}
 .ob-blue{background:var(--pastel-az)} .ob-blue .h{color:var(--petroleo)}
 .ob-amber{background:var(--pastel-tc)} .ob-amber .h{color:var(--terracota)}
 .ob-grey{background:var(--cinza-claro)} .ob-grey .h{color:var(--texto-3)}
@@ -490,8 +494,8 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
   .titulo-rel h1{font-size:14px}
   .marca-ct img{height:28px}
   /* a coruja fica no canto e o texto corre ao lado e por baixo dela, na largura toda da caixa */
-  .owlbox,.hero{flex-direction:column;align-items:flex-start;gap:12px;padding:14px} .owl,.hero .owl{width:44px}
-  .hero .bub{font-size:16px}
+  .owlbox,.hero{flex-direction:column;align-items:flex-start;gap:12px;padding:14px} .owl,.hero .owl,.topo-coruja .owl{width:44px}
+  .hero .bub,.topo-coruja .t{font-size:16px}
   .hero .fala{align-self:stretch;padding:12px 14px 14px}
   .hero .fala::before{left:14px;top:-11px;margin-top:0;border:9px solid transparent;border-top:0;border-bottom:12px solid var(--cartao)}
   .owlbox .t{max-width:none;align-self:stretch;padding:12px 14px 14px}
@@ -566,7 +570,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
       <!-- Sobre -->
       <section class="secao" id="sec-sobre" hidden>
         <div class="cab"><span class="n"><svg class="ic" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 11v6M12 7.5v.5"/></svg></span><h2>Sobre o portal</h2></div>
-        <div class="owlbox topo-coruja ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Sobre o portal</span><p>Como o portal está organizado, o que cada etiqueta quer dizer e o que ainda falta definir. <b>Protótipo montado em 18/11/2026 e revisto em 19/11/2026.</b> Os links foram conferidos no site do CT em 18/11/2026. Os números do plano de gestão vêm da Carta Avançar CT e do PDI UFPB 2024–2028. Os de manutenção vêm do Painel de requisições do Cuida CT. Os de inspeção, de ocupação e de projetos foram contados nas páginas em 19/11/2026. A página da Carta reproduz a Carta Programa de setembro de 2024, e a contagem de projetos vem dos dados abertos do Planeja CT.</p></div></div>
+        <div class="owlbox topo-coruja ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Sobre o portal</span><p>Aqui você vê como o portal está organizado, o que quer dizer cada etiqueta, ícone e cor e o que ainda falta definir. Os links foram conferidos nos sites de origem, e os números vêm da Carta, do PDI, do Planeja CT e do Cuida CT.</p></div></div>
         <div class="mapa">
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M5 5h2v2h-2zM11 5h2v2h-2zM17 5h2v2h-2zM5 11h2v2h-2zM11 11h2v2h-2zM17 11h2v2h-2zM5 17h2v2h-2zM11 17h2v2h-2zM17 17h2v2h-2z"/></svg><div><b>Sete seções, cada uma com a sua cor.</b> A cor aparece no menu, nos quadros de números e nos cartões. Cada seção tem endereço próprio, que pode ser enviado por link.<div class="leg"><div><span class="ponto" data-cor="1"></span>Acompanhamento da Gestão</div><div><span class="ponto" data-cor="7"></span>Serviços</div><div><span class="ponto" data-cor="2"></span>Infraestrutura</div><div><span class="ponto" data-cor="3"></span>Orçamento</div><div><span class="ponto" data-cor="4"></span>Gestão de Pessoas</div><div><span class="ponto" data-cor="5"></span>Transparência</div><div><span class="ponto" data-cor="6"></span>Sistemas do CT</div></div></div></div>
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4"/></svg><div><b>Busca no topo.</b> Fica na barra superior, sempre visível. Digite uma palavra para procurar no portal inteiro: nomes, explicações e seções. Também vale o tipo: "painel", "sistema", "documento" ou "página". A tecla Esc limpa a busca.</div></div>
@@ -717,7 +721,7 @@ const TIPO_PL={Painel:"Painéis",Sistema:"Sistemas",Documento:"Documentos","Pág
 
 const N_PROJ=CARTA.e.reduce((n,e)=>n+e.l.reduce((m,l)=>m+l.a.reduce((k,a)=>k+a.p,0),0),0);
 const SECOES=[
-{id:"acompanhamento",n:1,ic:"alvo",titulo:"Acompanhamento da Gestão",ciclo:true,fluxo:true,
+{id:"acompanhamento",coruja:"A gestão do CT anda em três passos: planejar, implantar e relatar. Cada projeto nasce de uma ação da Carta, que responde ao PDI, é cadastrado no Planeja CT com a ajuda dos tutoriais, aparece no painel e entra no relatório de gestão do ano.",n:1,ic:"alvo",titulo:"Acompanhamento da Gestão",ciclo:true,fluxo:true,
  kicker:"A gestão do CT anda em três passos: planejar, implantar e relatar. Cada passo tem as suas ferramentas, e todas se abrem daqui. As setas mostram o caminho de uma à outra.",
  resumo:"Planejar, implantar e relatar: o PDI e a Carta, o Planeja CT, o painel e os relatórios de gestão.",
  retorno:"O que foi relatado orienta o plano do ano seguinte, e o ciclo recomeça.",
@@ -748,7 +752,7 @@ const SECOES=[
   ]}
  ],
  leitura:{c:"ob-blue",owl:2,h:"O caminho das setas",tx:"<b>Cada projeto percorre o caminho das setas.</b> Nasce de uma ação da Carta, que responde ao PDI. É cadastrado e atualizado no Planeja CT, com a ajuda dos tutoriais. Aparece no painel e entra no relatório do ano."}},
-{id:"servicos",n:7,ic:"s_atende",titulo:"Serviços",diag:true,faixas:true,
+{id:"servicos",coruja:"Todo serviço do CT começa na carta de serviços, no Ajuda CT: ali cada setor diz o que oferece, quem pode pedir e o que é preciso. O pedido segue pelo sistema de cada serviço, e os painéis mostram o andamento dos atendimentos e dos transportes.",n:7,ic:"s_atende",titulo:"Serviços",diag:true,faixas:true,
  kicker:"Os serviços do CT andam em três passos: conhecer, pedir e acompanhar. Tudo começa na carta de serviços, que é o Ajuda CT; o pedido entra pelo sistema de cada serviço; e os painéis mostram como os atendimentos andam.",
  resumo:"Conhecer, pedir e acompanhar: a carta de serviços, os sistemas de pedido e os painéis de atendimento.",
  retorno:"O que os painéis mostram orienta a revisão da carta de serviços, e o ciclo recomeça.",
@@ -785,7 +789,7 @@ const SECOES=[
    ]}
  ],
  leitura:{c:"ob-blue",owl:2,h:"A carta de serviços",tx:"<b>Todo serviço começa na carta.</b> Antes de pedir, veja no Ajuda CT o que o setor oferece e o que é preciso. O pedido segue pelo sistema indicado, e os painéis mostram o andamento do conjunto."}},
-{id:"infraestrutura",n:2,ic:"predio",titulo:"Infraestrutura",diag:true,
+{id:"infraestrutura",coruja:"Cuidar dos espaços do CT tem três frentes: diagnosticar, manter e projetar. Todo pedido começa no Atende CT: conserto vira requisição ou processo na SINFRA, mudança no espaço vira projeto da APLURB, e o Cuida CT mostra o andamento de cada um.",n:2,ic:"predio",titulo:"Infraestrutura",diag:true,
  kicker:"Cuidar dos espaços do CT tem três frentes: diagnosticar, manter e projetar. O diagnóstico e a manutenção andam lado a lado, e os dois podem pedir um projeto. As setas mostram o caminho de uma ferramenta à outra.",
  resumo:"Diagnosticar, manter e projetar: ocupação e inspeções, pedidos e painéis de manutenção, projetos e obras.",
  retorno:"A manutenção e as obras mudam os espaços, e o diagnóstico recomeça.",
@@ -835,7 +839,7 @@ const SECOES=[
    ]}
  ],
  leitura:{c:"ob-amber",owl:2,h:"Requisição, processo ou projeto?",tx:"<b>Todo pedido começa no Atende CT.</b> Conserto vai para a Infraestrutura: serviço pequeno segue como requisição; intervenção maior vira processo. Mudança no espaço vai para a APLURB e vira projeto. O Cuida CT mostra o andamento da manutenção. O painel de requisições já é o do próprio Cuida CT; o de processos ainda está em Power BI."}},
-{id:"orcamento",n:3,ic:"balanca",titulo:"Orçamento",diag:true,faixas:true,
+{id:"orcamento",coruja:"O orçamento do CT anda em três passos: planejar, executar e acompanhar. Toda compra tem um destino: bem de consumo vai para o almoxarifado, bem permanente vai para o patrimônio, e os serviços aparecem no próprio painel de execução orçamentária.",n:3,ic:"balanca",titulo:"Orçamento",diag:true,faixas:true,
  kicker:"O orçamento do CT anda em três passos: planejar, executar e acompanhar. Cada passo tem as suas ferramentas, e as setas mostram o caminho de uma à outra.",
  resumo:"Planejar, executar e acompanhar: plano de contratações, licitações, sistemas de execução e painéis.",
  retorno:"O que foi acompanhado orienta o plano de contratações do ano seguinte, e o ciclo recomeça.",
@@ -880,7 +884,7 @@ const SECOES=[
    ]}
  ],
  leitura:{c:"ob-blue",owl:2,h:"Para onde vai o que se compra",tx:"<b>Toda compra tem um destino.</b> Bem de consumo vai para o almoxarifado; bem permanente, para o patrimônio. Os serviços aparecem no próprio painel de execução orçamentária e no Financeiro CT. Por isso o acompanhamento terá três vistas: orçamento, almoxarifado e patrimônio."}},
-{id:"pessoas",n:4,ic:"pessoas",titulo:"Gestão de Pessoas",ciclo:true,fluxo:true,
+{id:"pessoas",coruja:"A gestão de pessoas acompanha quem trabalha no CT em três momentos: ingressar, desenvolver e engajar, com as rotinas de pessoal do SIGRH valendo em todas as fases. Remuneração e benefícios ficam de fora, porque não estão no escopo do Centro.",n:4,ic:"pessoas",titulo:"Gestão de Pessoas",ciclo:true,fluxo:true,
  kicker:"A gestão de pessoas do CT acompanha quem trabalha no Centro em três momentos: ingressar, desenvolver e engajar. As rotinas de pessoal atravessam os três.",
  resumo:"Ingressar, desenvolver e engajar: seleções, Ajuda CT, capacitação, entregas, eventos, comunicação e rotinas.",
  retorno:"O que a avaliação e o convívio mostram orienta as próximas seleções e capacitações, e o ciclo recomeça.",
@@ -913,7 +917,7 @@ const SECOES=[
    {id:"proc-gp",rot:"Procedimentos",tipo:"Documento",sit:"ar",titulo:"Procedimentos da Gestão de Pessoas",desc:"O passo a passo dos pedidos de pessoal, no Ajuda CT.",url:"https://ajuda.ct.ufpb.br/books/procedimentos-da-gestao-de-pessoas"}
  ]},
  leitura:{c:"ob-blue",owl:2,h:"O que fica de fora",tx:"<b>Remuneração e benefícios não entram aqui.</b> Salários, auxílios e planos de saúde estão fora do escopo do Centro. A seção mostra o que o CT faz: selecionar, integrar, capacitar, avaliar, engajar e cuidar das rotinas de pessoal."}},
-{id:"academico",n:8,ic:"s_sigaa",titulo:"Acadêmico",ciclo:true,
+{id:"academico",coruja:"A vida acadêmica do CT anda em três passos: ofertar, acompanhar e conhecer os egressos. Departamentos e coordenações organizam o ensino, o SIGMA e o painel de estudantes mostram como ele anda, e o SAEGO acompanha quem já se formou no Centro.",n:8,ic:"s_sigaa",titulo:"Acadêmico",ciclo:true,
  kicker:"A vida acadêmica do CT anda em três passos: ofertar, acompanhar e conhecer os egressos. Cada passo tem as suas fontes, e todas se abrem daqui.",
  resumo:"Ofertar, acompanhar e conhecer os egressos: departamentos, cursos, SIGMA, painel de estudantes e SAEGO.",
  retorno:"O que os egressos mostram orienta a revisão dos cursos, e o ciclo recomeça.",
@@ -938,7 +942,7 @@ const SECOES=[
   ]}
  ],
  leitura:{c:"ob-blue",owl:2,h:"Do curso ao egresso",tx:"<b>A gestão acadêmica começa na oferta e termina no egresso.</b> Os departamentos e as coordenações organizam o ensino; o SIGMA e o painel de estudantes mostram como ele anda; o SAEGO acompanha quem já se formou."}},
-{id:"sistemas",n:6,ic:"grade",titulo:"Sistemas do CT",
+{id:"sistemas",coruja:"Os sistemas que o Centro mantém e os da UFPB que a comunidade usa, cada um na cor da seção em que é usado. A lista vai além da página Plataformas e Sistemas do site do CT, que ainda não traz Cuida, Financeiro, Arquivo e Repositório.",n:6,ic:"grade",titulo:"Sistemas do CT",
  kicker:"Os sistemas que o Centro mantém e os da UFPB que a comunidade usa no dia a dia. Cada um leva a cor da seção em que é usado; os demais ficam em dourado.",
  resumo:"Os sistemas que o Centro mantém e os da UFPB que a comunidade usa.",
  grupos:[
@@ -971,7 +975,7 @@ const SECOES=[
   ]}
  ],
  leitura:{c:"ob-grey",owl:3,h:"Nota sobre a lista",tx:"<b>A lista vai além da página do site.</b> Nove sistemas vêm da página Plataformas e Sistemas do site do CT. Cuida CT, Financeiro CT, Arquivo CT e Repositório de Projetos ainda não aparecem lá. No site, o Empresta CT consta como Em breve, o link do Monitora CT leva à página inicial e a descrição do Agenda CT repete a do Planeja CT."}},
-{id:"transparencia",n:5,ic:"olho",titulo:"Transparência",
+{id:"transparencia",coruja:"Se o dado que você procura não está neste portal, peça. O Serviço de Informação ao Cidadão da UFPB recebe os pedidos de acesso à informação, e o Fala.BR, do governo federal, registra também denúncias, reclamações, sugestões e elogios.",n:5,ic:"olho",titulo:"Transparência",
  kicker:"Como pedir ao Centro e à UFPB um dado que não está neste portal.",
  resumo:"Acesso à informação: SIC e Fala.BR.",
  grupos:[
@@ -1114,7 +1118,7 @@ function cartaoSis(it,g){
 document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map((s,ix)=>`
   <section class="secao" id="sec-${s.id}" data-cor="${s.n}" hidden>
     <div class="cab"><span class="n">${ico(s.ic)}</span><h2>${s.titulo}</h2></div>
-    <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.kicker} ${s.leitura.tx}</p></div></div>
+    <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.coruja}</p></div></div>
     
     ${(s.id==="sistemas"||s.id==="transparencia")?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
   </section>`).join(""));
@@ -1182,7 +1186,7 @@ function renderCarta(){
   document.getElementById("sec-carta").innerHTML=`
     <button class="voltar" type="button" data-ir="acompanhamento">${ico("volta")}Acompanhamento da Gestão</button>
     <div class="cab"><span class="n">${ico("doc")}</span><h2>Carta Avançar CT</h2></div>
-    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Do plano ao projeto</span><p>O plano de gestão 2025–2028 da Direção do CT: o que será feito e que metas foram assumidas, por eixo, linha e ação. <b>${acoes.length-sem} das ${acoes.length} ações já têm projeto no Planeja CT.</b> São ${nP} projetos classificados na Carta: ${porEixo.map(x=>x[1]+" em "+x[0]).join(", ")}. As outras ${sem} ações ainda não têm projeto cadastrado. Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
+    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Do plano ao projeto</span><p>O plano de gestão 2025–2028 da Direção do CT, por eixo, linha e ação, com o que será feito e as metas assumidas. ${acoes.length-sem} das ${acoes.length} ações já têm projeto no Planeja CT, num total de ${nP} projetos (dados de ${PLANEJA_DATA}).</p></div></div>
     <div class="stats">
       <div class="stat"><b>${E.length}</b><span>eixos</span></div>
       <div class="stat"><b>${nL}</b><span>linhas de ação</span></div>
@@ -1206,7 +1210,7 @@ function renderPDI(){
   document.getElementById("sec-pdi").innerHTML=`
     <button class="voltar" type="button" data-ir="acompanhamento">${ico("volta")}Acompanhamento da Gestão</button>
     <div class="cab"><span class="n">${ico("bandeira")}</span><h2>PDI UFPB 2024–2028</h2></div>
-    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Onde o CT concentra os projetos</span><p>O Plano de Desenvolvimento Institucional da universidade: quatro perspectivas e 17 objetivos estratégicos. Cada projeto do CT aponta para um deles. <b>${ord[0].p} dos ${nP} projetos apontam para o ${ord[0].c}</b>, e ${ord[1].p} para o ${ord[1].c}. ${sem.length?sem.map(o=>o.c).join(" e ")+(sem.length===1?" ainda não tem":" ainda não têm")+" projeto do CT. ":""}Os dados são de ${PLANEJA_DATA}; no portal publicado, a contagem é lida ao vivo.</p></div></div>
+    <div class="owlbox topo-coruja ob-blue">${coruja(2)}<div class="t"><span class="h">Onde o CT concentra os projetos</span><p>O Plano de Desenvolvimento Institucional da UFPB tem quatro perspectivas e 17 objetivos estratégicos, e cada projeto do CT cadastrado no Planeja aponta para um deles. ${ord[0].p} dos ${nP} projetos apontam para o ${ord[0].c}, e ${ord[1].p} para o ${ord[1].c} (dados de ${PLANEJA_DATA}).</p></div></div>
     <div class="stats">
       <div class="stat"><b>${P.length}</b><span>perspectivas do mapa estratégico</span></div>
       <div class="stat"><b>${oes.length}</b><span>objetivos estratégicos</span></div>
