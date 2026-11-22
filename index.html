@@ -23,6 +23,7 @@
   --s4:#3E6B57; --s4-f:#2F5A47; --s4-p:#E3F0E9;   /* Gestão de Pessoas: verde */
   --s5:#55697A; --s5-f:#4F6272; --s5-p:#E8EDF1;   /* Serviços e Transparência: cinza da paleta, escurecido */
   --s6:#8F6410; --s6-f:#8F6410; --s6-p:#FAEFCF;
+  --s8:#3D5A8A; --s8-f:#34507D; --s8-p:#E4EAF4;   /* Acadêmico: azul */
   --s7:#2C7A7B; --s7-f:#256B6C; --s7-p:#E0F0F0;   /* Serviços: verde-azulado */   /* Sistemas do CT: dourado das corujas */
   --fonte:"Source Sans 3","Segoe UI",Arial,sans-serif;
   --topo:64px; --menu:52px; --raio:12px;
@@ -40,6 +41,7 @@ body{--sc:var(--s1);--sf:var(--s1-f);--sp:var(--s1-p)}
 [data-cor="5"]{--sc:var(--s5);--sf:var(--s5-f);--sp:var(--s5-p)}
 [data-cor="6"]{--sc:var(--s6);--sf:var(--s6-f);--sp:var(--s6-p)}
 [data-cor="7"]{--sc:var(--s7);--sf:var(--s7-f);--sp:var(--s7-p)}
+[data-cor="8"]{--sc:var(--s8);--sf:var(--s8-f);--sp:var(--s8-p)}
 body{font-family:var(--fonte);font-size:14px;line-height:1.45;margin:0}
 body::before{content:"";position:fixed;inset:0 0 auto;height:var(--safe-t);z-index:60;background:var(--petroleo)}
 img{max-width:100%}
@@ -240,7 +242,7 @@ a.lc:hover,button.lc:hover{box-shadow:0 4px 12px rgba(28,36,49,.16);filter:brigh
 /* a coruja fala: o texto vai num balão branco com a ponta voltada para ela */
 .owlbox .t{position:relative;flex:1;min-width:0;font-size:18px;line-height:1.35;color:var(--petroleo);max-width:none;background:var(--cartao);border-radius:14px;padding:12px 18px 14px;box-shadow:0 1px 2px rgba(28,36,49,.06)}
 .owlbox .t::before{content:"";position:absolute;left:-11px;top:50%;margin-top:-9px;border:9px solid transparent;border-left:0;border-right:12px solid var(--cartao)}
-.owlbox .t p{margin:0} .owlbox .t p+p{margin-top:8px;font-size:15px;color:var(--texto-2)}
+.owlbox .t p{margin:0} .owlbox .t p+p{margin-top:8px}
 .topo-coruja{margin:-6px 0 4px}
 .caixa-obj .t{background:var(--pastel-az);border-radius:12px;padding:14px 18px;font-size:15px;color:var(--petroleo)}
 .caixa-obj .h{display:block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:4px;color:var(--petroleo)}
@@ -432,8 +434,8 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
 .principal{display:flex;flex-direction:column;min-height:calc(100dvh - var(--topo) - var(--menu) - var(--safe-t))}
 .principal>.conteudo{flex:1 0 auto}
 .rodape{margin-top:24px;color:#fff}
-.rodape .onda{display:block;width:100%;height:72px;margin-bottom:-2px}
-.rodape-corpo{background:var(--petroleo);display:flex;align-items:center;gap:26px;padding:8px max(24px,env(safe-area-inset-left,0px)) 30px}
+.rodape .onda{display:block;width:100%;height:72px;margin-bottom:-8px}
+.rodape-corpo{position:relative;background:var(--petroleo);display:flex;align-items:center;gap:26px;padding:8px max(24px,env(safe-area-inset-left,0px)) 30px}
 .rodape-marca{flex:0 0 auto;display:block} .rodape-marca img{display:block;height:92px;width:auto}
 .rodape-tx{min-width:0;max-width:1400px}
 .rodape-t{display:block;font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
@@ -510,8 +512,9 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
     <button class="item" data-sec="infraestrutura" data-cor="2" title="Infraestrutura"><svg class="ic" viewBox="0 0 24 24"><path d="M4 21V5l8-3 8 3v16M9 21v-4h6v4M8 8h.01M12 8h.01M16 8h.01M8 12h.01M12 12h.01M16 12h.01"/></svg><span>Infraestrutura</span></button>
     <button class="item" data-sec="orcamento" data-cor="3" title="Orçamento"><svg class="ic" viewBox="0 0 24 24"><path d="M2 6h20v12H2zM12 9v6M14 10h-3a1 1 0 0 0 0 2h2a1 1 0 0 1 0 2h-3M5.5 9v.01M18.5 15v.01"/></svg><span>Orçamento</span></button>
     <button class="item" data-sec="pessoas" data-cor="4" title="Gestão de Pessoas"><svg class="ic" viewBox="0 0 24 24"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2 21a7 7 0 0 1 14 0M16 3.5a4 4 0 0 1 0 7.5M22 21a7 7 0 0 0-5-6.7"/></svg><span>Pessoas</span></button>
-    <button class="item" data-sec="transparencia" data-cor="5" title="Transparência"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg><span>Transparência</span></button>
+    <button class="item" data-sec="academico" data-cor="8" title="Acadêmico"><svg class="ic" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5zM6 11v5c3 2 9 2 12 0v-5M22 9v6"/></svg><span>Acadêmico</span></button>
     <button class="item" data-sec="sistemas" data-cor="6" title="Sistemas do CT"><svg class="ic" viewBox="0 0 24 24"><path d="M5 5h2v2h-2zM11 5h2v2h-2zM17 5h2v2h-2zM5 11h2v2h-2zM11 11h2v2h-2zM17 11h2v2h-2zM5 17h2v2h-2zM11 17h2v2h-2zM17 17h2v2h-2z"/></svg><span>Sistemas</span></button>
+    <button class="item" data-sec="transparencia" data-cor="5" title="Transparência"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zm10 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg><span>Transparência</span></button>
     <div class="sep"></div>
     <button class="item" data-sec="sobre" title="Sobre o portal"><svg class="ic" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 11v6M12 7.5v.5"/></svg><span>Sobre o portal</span></button>
   </nav>
@@ -539,7 +542,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
 
       <!-- Sobre -->
       <section class="secao" id="sec-sobre" hidden>
-        <div class="cab"><span class="n">8</span><h2>Sobre o portal</h2></div>
+        <div class="cab"><span class="n">9</span><h2>Sobre o portal</h2></div>
         <div class="owlbox topo-coruja ob-grey"><div class="owl" data-owl="3"></div><div class="t"><span class="h">Sobre o portal</span><p>Como o portal está organizado, o que cada etiqueta quer dizer e o que ainda falta definir.</p><p><b>Protótipo montado em 18/11/2026 e revisto em 19/11/2026.</b> Os links foram conferidos no site do CT em 18/11/2026. Os números do plano de gestão vêm da Carta Avançar CT e do PDI UFPB 2024–2028. Os de manutenção vêm do Painel de requisições do Cuida CT. Os de inspeção, de ocupação e de projetos foram contados nas páginas em 19/11/2026. A página da Carta reproduz a Carta Programa de setembro de 2024, e a contagem de projetos vem dos dados abertos do Planeja CT.</p></div></div>
         <div class="mapa">
           <div class="mapc"><svg class="ic" viewBox="0 0 24 24"><path d="M5 5h2v2h-2zM11 5h2v2h-2zM17 5h2v2h-2zM5 11h2v2h-2zM11 11h2v2h-2zM17 11h2v2h-2zM5 17h2v2h-2zM11 17h2v2h-2zM17 17h2v2h-2z"/></svg><div><b>Sete seções, cada uma com a sua cor.</b> A cor aparece no menu, nos quadros de números e nos cartões. Cada seção tem endereço próprio, que pode ser enviado por link.<div class="leg"><div><span class="ponto" data-cor="1"></span>Acompanhamento da Gestão</div><div><span class="ponto" data-cor="7"></span>Serviços</div><div><span class="ponto" data-cor="2"></span>Infraestrutura</div><div><span class="ponto" data-cor="3"></span>Orçamento</div><div><span class="ponto" data-cor="4"></span>Gestão de Pessoas</div><div><span class="ponto" data-cor="5"></span>Transparência</div><div><span class="ponto" data-cor="6"></span>Sistemas do CT</div></div></div></div>
@@ -887,20 +890,11 @@ const SECOES=[
    {id:"proc-gp",rot:"Procedimentos",tipo:"Documento",sit:"ar",titulo:"Procedimentos da Gestão de Pessoas",desc:"O passo a passo dos pedidos de pessoal, no Ajuda CT.",url:"https://ajuda.ct.ufpb.br/books/procedimentos-da-gestao-de-pessoas"}
  ]},
  leitura:{c:"ob-blue",owl:2,h:"O que fica de fora",tx:"<b>Remuneração e benefícios não entram aqui.</b> Salários, auxílios e planos de saúde estão fora do escopo do Centro. A seção mostra o que o CT faz: selecionar, integrar, capacitar, avaliar, engajar e cuidar das rotinas de pessoal."}},
-{id:"transparencia",n:5,ic:"olho",titulo:"Transparência",
- kicker:"O que o Centro mostra de si em números e como pedir um dado que não está aqui.",
- resumo:"CT em números e acesso à informação: SIC e Fala.BR.",
- grupos:[
-  {t:"O CT em números",d:"Os dados do Centro, ano a ano.",itens:[
-   {id:"ct-em-numeros",tipo:"Painel",sit:"criar",titulo:"CT em números",desc:"Cursos, estudantes, docentes e técnicos do Centro, ano a ano.",
-    pergunta:"Quantos cursos, estudantes, docentes e técnicos o CT tem, ano a ano?"}
-  ]},
-  {t:"Acesso à informação",d:"Como pedir um dado que não está aqui.",itens:[
-   {id:"sic",rot:"SIC",tipo:"Página",sit:"ar",titulo:"Serviço de Informação ao Cidadão (SIC)",desc:"O Serviço de Informação ao Cidadão da UFPB: como pedir um dado.",url:"https://www.ufpb.br/acessoainformacao/contents/menu/acesso-a-informacao/sic"},
-   {id:"falabr",tipo:"Sistema",sit:"ar",titulo:"Fala.BR",desc:"Ouvidoria e acesso à informação do governo.",url:"https://falabr.cgu.gov.br/web/home"}
-  ]}
- ],
- leitura:{c:"ob-grey",owl:3,h:"Pedir um dado",tx:"<b>Se o dado não está aqui, peça.</b> O SIC da UFPB recebe os pedidos de acesso à informação, e o Fala.BR registra também as manifestações de ouvidoria."}},
+{id:"academico",n:8,ic:"s_sigaa",titulo:"Acadêmico",
+ kicker:"A gestão do ensino de graduação e de pós-graduação do Centro.",
+ resumo:"Graduação e pós-graduação do Centro. Seção a criar.",
+ grupos:[],
+ leitura:{c:"ob-blue",owl:0,h:"Seção a criar",tx:"<b>Esta seção ainda vai ser criada.</b> Os sistemas, os painéis e os documentos da gestão acadêmica entram aqui quando a Direção definir o conteúdo."}},
 {id:"sistemas",n:6,ic:"grade",titulo:"Sistemas do CT",
  kicker:"Os sistemas que o Centro mantém e os da UFPB que a comunidade usa no dia a dia. Cada um leva a cor da seção em que é usado; os demais ficam em dourado.",
  resumo:"Os sistemas que o Centro mantém e os da UFPB que a comunidade usa.",
@@ -929,11 +923,21 @@ const SECOES=[
   {t:"Sistemas da UFPB",d:"Mantidos pela Superintendência de Tecnologia da Informação (STI).",itens:[
    {id:"sigaa",ic:"s_sigaa",tipo:"Sistema",sit:"ar",titulo:"SIGAA",desc:"Acadêmico da UFPB: turmas, matrículas e notas.",url:"https://sigaa.ufpb.br/sigaa/"},
    {id:"sipac",ic:"s_sipac",tipo:"Sistema",sit:"ar",titulo:"SIPAC",desc:"Processos, requisições, patrimônio e contratos.",url:"https://sipac.ufpb.br/public/jsp/portal.jsf"},
-   {id:"sigrh",ic:"s_sigrh",cor:4,tipo:"Sistema",sit:"ar",titulo:"SIGRH",desc:"Pessoal da UFPB: férias, frequência e afastamentos.",url:"https://sigrh.ufpb.br/sigrh/login.jsf"},,
+   {id:"sigrh",ic:"s_sigrh",cor:4,tipo:"Sistema",sit:"ar",titulo:"SIGRH",desc:"Pessoal da UFPB: férias, frequência e afastamentos.",url:"https://sigrh.ufpb.br/sigrh/login.jsf"},
    {id:"webmail",ic:"s_webmail",tipo:"Sistema",sit:"ar",titulo:"WebMail",desc:"O e-mail institucional da UFPB, pelo navegador.",url:"https://webmail.ufpb.br/"}
   ]}
  ],
- leitura:{c:"ob-grey",owl:3,h:"Nota sobre a lista",tx:"<b>A lista vai além da página do site.</b> Nove sistemas vêm da página Plataformas e Sistemas do site do CT. Cuida CT, Financeiro CT, Arquivo CT e Repositório de Projetos ainda não aparecem lá. No site, o Empresta CT consta como Em breve, o link do Monitora CT leva à página inicial e a descrição do Agenda CT repete a do Planeja CT."}}
+ leitura:{c:"ob-grey",owl:3,h:"Nota sobre a lista",tx:"<b>A lista vai além da página do site.</b> Nove sistemas vêm da página Plataformas e Sistemas do site do CT. Cuida CT, Financeiro CT, Arquivo CT e Repositório de Projetos ainda não aparecem lá. No site, o Empresta CT consta como Em breve, o link do Monitora CT leva à página inicial e a descrição do Agenda CT repete a do Planeja CT."}},
+{id:"transparencia",n:5,ic:"olho",titulo:"Transparência",
+ kicker:"Como pedir ao Centro e à UFPB um dado que não está neste portal.",
+ resumo:"Acesso à informação: SIC e Fala.BR.",
+ grupos:[
+  {t:"Acesso à informação",d:"Como pedir um dado que não está aqui.",itens:[
+   {id:"sic",ic:"olho",rot:"SIC",tipo:"Página",sit:"ar",titulo:"Serviço de Informação ao Cidadão (SIC)",desc:"O Serviço de Informação ao Cidadão da UFPB: como pedir um dado.",url:"https://www.ufpb.br/acessoainformacao/contents/menu/acesso-a-informacao/sic"},
+   {id:"falabr",ic:"s_atende",tipo:"Sistema",sit:"ar",titulo:"Fala.BR",desc:"Ouvidoria e acesso à informação do governo.",url:"https://falabr.cgu.gov.br/web/home"}
+  ]}
+ ],
+ leitura:{c:"ob-grey",owl:3,h:"Pedir um dado",tx:"<b>Se o dado não está aqui, peça.</b> O SIC da UFPB recebe os pedidos de acesso à informação, e o Fala.BR registra também as manifestações de ouvidoria."}}
 ];
 
 const ITENS=[], POR_ID={}, SEC_DE={};
@@ -1053,14 +1057,14 @@ document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map
     <div class="cab"><span class="n">${ix+1}</span><h2>${s.titulo}</h2></div>
     <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.kicker}</p><p>${s.leitura.tx}</p></div></div>
     
-    ${s.id==="sistemas"?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
+    ${(s.id==="sistemas"||s.id==="transparencia")?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
   </section>`).join(""));
 
 document.querySelectorAll(".ciclo-wrap[data-setas]").forEach(w=>{const f=()=>desenharSetas(w); new ResizeObserver(f).observe(w); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)});
 
 /* ===== Início ===== */
 document.getElementById("portas").innerHTML=SECOES.map(s=>{const n=s.grupos.reduce((t,g)=>t+g.itens.length,0);
-  return `<button class="porta" type="button" data-ir="${s.id}" data-cor="${s.n}"><span class="porta-ic">${ico(s.ic)}</span><span class="porta-t">${s.titulo}</span><span class="porta-d">${s.resumo}</span><span class="qt">Abrir a seção · ${n} itens ${ico("seta")}</span></button>`}).join("");
+  return `<button class="porta" type="button" data-ir="${s.id}" data-cor="${s.n}"><span class="porta-ic">${ico(s.ic)}</span><span class="porta-t">${s.titulo}</span><span class="porta-d">${s.resumo}</span><span class="qt">${n?`Abrir a seção · ${n} itens`:"A criar · seção em construção"} ${ico("seta")}</span></button>`}).join("");
 
 /* ===== Sobre ===== */
 /* todos os painéis do portal, com a situação e os três campos que a Direção vai informar */
@@ -1077,7 +1081,7 @@ document.getElementById("faltas").innerHTML=[
   "<b>Substituto e ordem de troca</b> dos painéis que ainda estão em Power BI, e quem constrói os que faltam.",
   "<b>Endereço do portal</b> e onde ele ficará hospedado.",
   "<b>Quem atualiza cada seção</b> e com que frequência.",
-  "<b>Conteúdo das páginas novas:</b> obras em andamento e CT em números.",
+  "<b>Conteúdo das páginas novas:</b> obras em andamento e a seção Acadêmico.",
   "<b>Leitura ao vivo do Planeja CT</b> nas páginas da Carta e do PDI, no lugar dos dados de "+PLANEJA_DATA+".",
   "<b>Endereço público do PDF</b> da Carta Avançar CT, para a página poder oferecer o documento original."
 ].map(t=>`<li>${ico("check")}<span>${t}</span></li>`).join("");
