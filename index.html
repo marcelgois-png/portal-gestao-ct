@@ -65,7 +65,7 @@ a{color:var(--petroleo)}
 .titulo-rel:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .titulo-rel h1{color:var(--sobre-petroleo);font-size:18px;font-weight:500;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .titulo-rel span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.78;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.insta{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--sobre-petroleo);text-decoration:none;font-weight:500;font-size:13px;
+.insta{margin-left:0;display:flex;align-items:center;gap:8px;color:var(--sobre-petroleo);text-decoration:none;font-weight:500;font-size:13px;
   padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.3);flex:0 0 auto}
 .insta:hover{background:var(--petroleo-escuro)}
 
@@ -85,7 +85,7 @@ body.recolhido .item span,body.recolhido .lateral .rot,body.recolhido .rodape-la
 .principal{flex:1;min-width:0}
 
 /* ── Busca na barra superior ── */
-.topo .campo{display:flex;align-items:center;gap:8px;margin-left:28px;flex:1 1 260px;max-width:480px;min-width:0;
+.topo .campo{display:flex;align-items:center;gap:8px;margin-left:auto;margin-right:12px;flex:1 1 260px;max-width:480px;min-width:0;
   background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px;color:rgba(255,255,255,.8)}
 .topo .campo .ic{width:17px;height:17px;flex:0 0 auto}
 .topo .campo input{border:0;outline:0;font:inherit;font-size:14px;background:transparent;color:#fff;width:100%;min-width:0}
@@ -418,7 +418,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
   .marca-ct img{height:32px}
   .portas,.atalhos,.mapa{grid-template-columns:1fr}
   .porta{min-height:0;padding:16px 16px 14px} .atalho{min-height:0;padding:14px 16px}
-  .topo .campo{margin-left:12px}
+  .topo .campo{margin-left:auto;margin-right:8px}
   .conteudo{padding-left:16px;padding-right:16px}
 }
 @media (max-width:480px){
@@ -434,7 +434,7 @@ ul.ck li .ic{color:var(--terracota);margin-top:2px}
   .owlbox .t{max-width:none;align-self:stretch;padding:12px 14px 14px}
   .owlbox .t::before{left:14px;top:-11px;margin-top:0;border:9px solid transparent;border-top:0;border-bottom:12px solid var(--cartao)}
   /* no celular pequeno, a busca ocupa o lugar do nome do portal */
-  .titulo-rel{display:none} .topo .campo{margin-left:8px;padding:6px 12px} .topo .campo input{font-size:16px}
+  .titulo-rel{display:none} .topo .campo{margin-left:8px;margin-right:6px;padding:6px 12px} .topo .campo input{font-size:16px}
 
   details.ac>summary{flex-wrap:wrap} details.ac .nome{flex-basis:calc(100% - 30px)} details.ac .meta{margin-left:26px}
   .ac-corpo{padding-left:12px} table.cm thead{display:none} table.cm td{display:block;width:auto!important;padding:6px 0} table.cm td:first-child{border-bottom:0;padding-bottom:0}
