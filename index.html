@@ -147,33 +147,38 @@ a{color:var(--petroleo)}
 a.porta{text-decoration:none}
 /* Sistemas: cartão com imagem, etiqueta da categoria, nome e explicação */
 /* faixas horizontais com cartões do tamanho dos de Sistemas */
-.sis-grade,.fx-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),290px));gap:24px 28px;justify-content:start}
+.sis-grade{display:grid;grid-template-columns:repeat(var(--nc),minmax(0,1fr));gap:24px}
+:root{--nc:5}
+@media (max-width:1279px){:root{--nc:4}}
+@media (max-width:1023px){:root{--nc:3}}
+@media (max-width:820px){:root{--nc:2}}
+@media (max-width:560px){:root{--nc:1}}
 .ciclo.fx{display:flex;flex-direction:column;gap:0}
-.fx-passo{display:grid;grid-template-columns:52px minmax(0,320px) minmax(0,1fr);background:var(--cartao);border:1px solid var(--borda);border-radius:var(--raio)}
-.fx-rot{grid-row:1 / span 2;background:var(--pc);color:#fff;border-radius:var(--raio) 0 0 var(--raio);margin:-1px 0 -1px -1px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding:18px 0}
+.fx-passo{display:grid;grid-template-columns:repeat(var(--nc),minmax(0,1fr));gap:0 24px;padding-right:22px;background:var(--cartao);border:1px solid var(--borda);border-radius:var(--raio)}
+.fx-ini{display:flex;min-width:0}
+.fx-rot{flex:0 0 52px;background:var(--pc);color:#fff;border-radius:var(--raio) 0 0 var(--raio);margin:-1px 0 -1px -1px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding:18px 0}
 .fx-rot h3{writing-mode:vertical-rl;transform:rotate(180deg);font-size:20px;font-weight:600;color:#fff;margin:0;white-space:nowrap}
 .fx-rot .passo-n{order:2}
-.fx-esq{display:flex;flex-direction:column;padding:22px 0 22px 24px}
+.fx-esq{flex:1;min-width:0;display:flex;flex-direction:column;padding:22px 0 22px 20px}
 .fx-q{margin:0 0 8px;font-size:15px;font-weight:600;color:var(--pc)}
 .fx-tx{margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--texto-2)}
 .fx-fim{margin:auto 0 0;padding-top:12px;border-top:1px solid var(--borda);font-size:13px;color:var(--texto-2)}
 .fx-fim span{display:block;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--pc);margin-bottom:2px}
-.fx-cards{padding:22px 22px 22px 34px;align-content:start;gap:24px 24px}
+.fx-cards{grid-column:2 / -1;display:grid;grid-template-columns:repeat(calc(var(--nc) - 1),minmax(0,1fr));gap:24px;padding:22px 0;align-content:start}
 .fx-liga{display:flex;align-items:center;gap:8px;height:44px;padding-left:16px;color:var(--sf);font-size:12.5px;font-weight:500}
 .fx-liga .ic{width:20px;height:20px}
 .fx-liga span{color:var(--texto-2)}
 .fx-liga-base{padding-left:2px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .fx-base .fx-rot h3{font-size:16px}
 .fx-wrap .retorno.plano{margin-top:14px}
-@container ciclo (max-width:1100px){
-  .fx-passo{grid-template-columns:52px minmax(0,1fr)}
-  .fx-esq{padding-right:22px;padding-bottom:4px} .fx-fim{margin-top:14px}
-  .fx-cards{grid-column:2;padding:16px 22px 22px 24px}
+@media (max-width:820px){
+  .fx-passo{grid-template-columns:minmax(0,1fr);padding-right:0}
+  .fx-cards{grid-column:1;grid-template-columns:repeat(var(--nc),minmax(0,1fr));padding:4px 16px 18px 68px}
+  .fx-esq{padding-right:16px}
 }
-@container ciclo (max-width:560px){
-  .fx-passo{grid-template-columns:40px minmax(0,1fr)}
-  .fx-rot h3{font-size:17px}
-  .fx-esq{padding:16px 14px 0} .fx-cards{padding:16px 14px 16px;gap:22px}
+@media (max-width:560px){
+  .fx-rot{flex-basis:40px} .fx-rot h3{font-size:17px}
+  .fx-esq{padding:16px 14px} .fx-cards{padding:0 14px 16px 54px;gap:20px}
 }
 .sis-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:16px 16px 18px;border:1px solid #D3DCE4;border-radius:18px;background:#F7F9FB;text-decoration:none;color:var(--texto);transition:box-shadow .15s,transform .15s}
 a.sis-card:hover{box-shadow:0 10px 24px rgba(28,36,49,.12);transform:translateY(-2px)}
@@ -1153,8 +1158,8 @@ function faixasH(s){
   const grupos=s.grupos.map((g,i)=>{const o=cfg.ordem&&cfg.ordem[i]; return {...g,itens:o?o.map(id=>g.itens.find(x=>x.id===id)).filter(Boolean):g.itens}});
   if(s.base)grupos.push({t:s.base.rot,base:true,q:s.base.t,tx:s.base.tx,itens:s.base.itens});
   const faixa=(g,i)=>`<div class="fx-passo${g.base?" fx-base":""}" style="--pc:${g.cor||"var(--sf)"}">
-      <div class="fx-rot">${g.base?"":`<span class="passo-n">${i+1}</span>`}<h3>${g.t}</h3></div>
-      <div class="fx-esq"><p class="fx-q">${g.q}</p><p class="fx-tx">${g.tx}</p>${g.entrega?`<p class="fx-fim"><span>Entrega</span>${g.entrega}</p>`:""}</div>
+      <div class="fx-ini"><div class="fx-rot">${g.base?"":`<span class="passo-n">${i+1}</span>`}<h3>${g.t}</h3></div>
+      <div class="fx-esq"><p class="fx-q">${g.q}</p><p class="fx-tx">${g.tx}</p>${g.entrega?`<p class="fx-fim"><span>Entrega</span>${g.entrega}</p>`:""}</div></div>
       <div class="fx-cards">${g.itens.map(x=>cartaoImg(x)).join("")}</div>
     </div>`;
   return `<div class="ciclo-wrap fx-wrap" data-setas="${s.id}">${s.caminho?`<p class="so-leitor">${s.caminho}</p>`:""}
