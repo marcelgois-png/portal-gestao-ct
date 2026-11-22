@@ -146,7 +146,33 @@ a{color:var(--petroleo)}
 .porta:focus-visible{outline:2.5px solid var(--terracota);outline-offset:3px}
 a.porta{text-decoration:none}
 /* Sistemas: cartão com imagem, etiqueta da categoria, nome e explicação */
-.sis-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+/* faixas horizontais com cartões do tamanho dos de Sistemas */
+.sis-grade,.fx-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),290px));gap:24px 28px;justify-content:start}
+.ciclo.fx{display:flex;flex-direction:column;gap:0}
+.fx-passo{display:grid;grid-template-columns:52px minmax(0,1fr);background:var(--cartao);border:1px solid var(--borda);border-radius:var(--raio)}
+.fx-rot{grid-row:1 / span 2;background:var(--pc);color:#fff;border-radius:var(--raio) 0 0 var(--raio);margin:-1px 0 -1px -1px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:12px;padding:18px 0}
+.fx-rot h3{writing-mode:vertical-rl;transform:rotate(180deg);font-size:20px;font-weight:600;color:#fff;margin:0;white-space:nowrap}
+.fx-rot .passo-n{order:2}
+.fx-esq{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,300px);gap:4px 40px;padding:20px 22px 0 24px}
+.fx-q{grid-column:1;margin:0;font-size:15px;font-weight:600;color:var(--pc)}
+.fx-tx{grid-column:1;margin:0;font-size:14px;line-height:1.55;color:var(--texto-2);max-width:110ch}
+.fx-fim{grid-column:2;grid-row:1 / span 2;align-self:start;margin:0;padding-left:16px;border-left:2px solid var(--pc);font-size:13px;color:var(--texto-2)}
+.fx-fim span{display:block;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--pc);margin-bottom:2px}
+.fx-cards{grid-column:2;padding:20px 22px 22px 24px;align-content:start}
+.fx-liga{display:flex;align-items:center;gap:8px;height:44px;padding-left:16px;color:var(--sf);font-size:12.5px;font-weight:500}
+.fx-liga .ic{width:20px;height:20px}
+.fx-liga span{color:var(--texto-2)}
+.fx-liga-base{padding-left:2px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.fx-base .fx-rot h3{font-size:16px}
+.fx-wrap .retorno.plano{margin-top:14px}
+@container ciclo (max-width:900px){
+  .fx-esq{grid-template-columns:1fr} .fx-fim{grid-column:1;grid-row:auto;margin-top:10px}
+}
+@container ciclo (max-width:560px){
+  .fx-passo{grid-template-columns:40px minmax(0,1fr)}
+  .fx-rot h3{font-size:17px}
+  .fx-esq{padding:16px 14px 0} .fx-cards{padding:16px 14px 16px;gap:22px}
+}
 .sis-card{position:relative;display:flex;flex-direction:column;gap:10px;padding:16px 16px 18px;border:1px solid #D3DCE4;border-radius:18px;background:#F7F9FB;text-decoration:none;color:var(--texto);transition:box-shadow .15s,transform .15s}
 a.sis-card:hover{box-shadow:0 10px 24px rgba(28,36,49,.12);transform:translateY(-2px)}
 button.sis-card{font:inherit;text-align:left;cursor:pointer;width:100%}
@@ -1106,6 +1132,35 @@ function desenharSetas(wrap){
   svg.querySelector("g").innerHTML=out;
 }
 
+
+/* ===== Faixas horizontais (macroprocessos), com cartões do tamanho dos de Sistemas ===== */
+const FX={
+ acompanhamento:{ordem:[["pdi","carta"],["planeja-manual","planeja-acomp"],["acoes","relatorios"]],
+   setas:[["pdi","carta"],["planeja-manual","planeja-acomp"],["acoes","relatorios"]],liga:["o compromisso vira projeto","o projeto vira relato"]},
+ servicos:{setas:[],liga:["segue para o pedido","segue para o acompanhamento"]},
+ infraestrutura:{ordem:[["ocupacao","inspecao"],["ajuda-infra","pedir-manutencao","cuida","painel-cuida","processos-manutencao"],["manual-aplurb","pedir-projeto","repositorio","obras"]],
+   setas:[["ajuda-infra","pedir-manutencao"],["pedir-manutencao","cuida"],["cuida","painel-cuida"],["manual-aplurb","pedir-projeto"],["pedir-projeto","repositorio"],["repositorio","obras"]],
+   liga:["o diagnóstico vira pedido de manutenção","a manutenção pode pedir um projeto"]},
+ orcamento:{ordem:[["pca","plan-orc","irps","proc-aquis"],["codeor","financeiro"],["almoxarifado-painel","execucao","patrimonio-painel"]],
+   setas:[["pca","plan-orc"],["plan-orc","irps"],["proc-aquis","irps"],["execucao","almoxarifado-painel"],["execucao","patrimonio-painel"]],liga:["segue para a execução","segue para o acompanhamento"]},
+ pessoas:{setas:[["selecoes","ajuda-gp"],["pdp","polare"]],liga:["quem chega se desenvolve","quem se desenvolve se engaja"]},
+ academico:{setas:[],liga:["a oferta é acompanhada","os formados viram egressos"]}
+};
+function faixasH(s){
+  const cfg=FX[s.id]; SETAS[s.id]=(cfg.setas||[]).map(([de,para])=>({de,para}));
+  const grupos=s.grupos.map((g,i)=>{const o=cfg.ordem&&cfg.ordem[i]; return {...g,itens:o?o.map(id=>g.itens.find(x=>x.id===id)).filter(Boolean):g.itens}});
+  if(s.base)grupos.push({t:s.base.rot,base:true,q:s.base.t,tx:s.base.tx,itens:s.base.itens});
+  const faixa=(g,i)=>`<div class="fx-passo${g.base?" fx-base":""}" style="--pc:${g.cor||"var(--sf)"}">
+      <div class="fx-rot">${g.base?"":`<span class="passo-n">${i+1}</span>`}<h3>${g.t}</h3></div>
+      <div class="fx-esq"><p class="fx-q">${g.q}</p><p class="fx-tx">${g.tx}</p>${g.entrega?`<p class="fx-fim"><span>Entrega</span>${g.entrega}</p>`:""}</div>
+      <div class="fx-cards">${g.itens.map(x=>cartaoImg(x)).join("")}</div>
+    </div>`;
+  return `<div class="ciclo-wrap fx-wrap" data-setas="${s.id}">${s.caminho?`<p class="so-leitor">${s.caminho}</p>`:""}
+    <div class="ciclo fx">${grupos.map((g,i)=>(i&&!g.base?`<div class="fx-liga">${ico("baixo")}<span>${cfg.liga[i-1]||""}</span></div>`:"")+(g.base?`<div class="fx-liga fx-liga-base"><span>Em todas as fases</span></div>`:"")+faixa(g,i)).join("")}</div>
+    <svg class="setas" aria-hidden="true"><defs><marker id="ponta-${s.id}" viewBox="0 0 10 10" markerWidth="10" markerHeight="10" refX="8.5" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M3 1.5 8.5 5 3 8.5"/></marker></defs><g></g></svg>
+    <div class="retorno plano"><span>${ico("ciclo")}${s.retorno}</span></div>
+  </div>`;
+}
 /* pastilha grande dos sistemas, no estilo das Dimensões do Início */
 function cartaoSis(it,g){
   const cor=it.cor||SEC_DE[it.id].n, st=SIT[it.sit]||SIT.ar, ic=ico(it.ic||TIPO_IC[it.tipo]);
@@ -1120,7 +1175,7 @@ document.getElementById("sec-sobre").insertAdjacentHTML("beforebegin",SECOES.map
     <div class="cab"><span class="n">${ico(s.ic)}</span><h2>${s.titulo}</h2></div>
     <div class="owlbox topo-coruja ${s.leitura.c}">${coruja(s.leitura.owl)}<div class="t"><span class="h">${s.leitura.h}</span><p>${s.coruja}</p></div></div>
     
-    ${(s.id==="sistemas"||s.id==="transparencia")?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
+    ${(s.id==="sistemas"||s.id==="transparencia")?`<div class="sis-grade">${s.grupos.map(g=>g.itens.map(i=>cartaoSis(i,g)).join("")).join("")}</div>`:FX[s.id]?faixasH(s):s.diag?diagrama(s):s.ciclo?ciclo(s):s.grupos.map(g=>`<div class="grupo"><div class="grupo-t"><h3>${g.t}</h3>${g.d?`<span>${g.d}</span>`:""}</div><div class="cards">${g.itens.map(i=>cartao(i)).join("")}</div></div>`).join("")}
   </section>`).join(""));
 
 document.querySelectorAll(".ciclo-wrap[data-setas]").forEach(w=>{const f=()=>desenharSetas(w); new ResizeObserver(f).observe(w); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(f)});
